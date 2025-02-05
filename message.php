@@ -8,33 +8,85 @@
 <body>
 
 <?php
-include "Connexion.php";  
+include "bdd.php";  
 echo "Bdd connecté<br>";
 
-try {
-    displayTableData($db, ["users", "messages"]);
-} catch (Exception $e) {
-    echo "Erreur : " . $e->getMessage();
-}
+//l'identifiant de la table doit etre un ARRAY (d'ou les [] )
 
-function displayTableData($db, $tables) {
+DisplayItem($db, ["users"]); 
+// DisplayItem($db, ["messages"]);
+
+?>
+<!-- 
+<form >
+    <label for="identifiant">Votre Identifiant</label>
+        <select name="identifiant" id="identifiant-select">
+
+            <?php
+                    $donnees = $db->query("SELECT * FROM users");
+                    $data = $donnees->fetchAll(PDO::FETCH_ASSOC);
+
+                    foreach ($data as $row) {
+                        foreach ($row as $column ) {
+                            echo "$column: $value<br>";
+                        }
+                    }
+            ?>
+
+
+</form> -->
+
+
+<?php
+AfficherMessage($db, 1);
+AfficherMessage($db, 2);
+
+//Montre tous les Items d'une table :
+function DisplayItem($db, $tables) {
+    
+    
     foreach ($tables as $table) {
-        try {
-            $stmt = $db->query("SELECT * FROM $table");
-            $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            $donnees = $db->query("SELECT * FROM $table");
+            $data = $donnees->fetchAll(PDO::FETCH_ASSOC);
             
-            echo "<hr>Table: $table<br>";
+            echo "<hr><h2>Table: $table</h2><br>";
             foreach ($data as $row) {
                 foreach ($row as $column => $value) {
                     echo "$column: $value<br>";
                 }
                 echo "<br>";
             }
-        } catch (Exception $e) {
-            echo "Erreur lors de la récupération des données de la table $table : " . $e->getMessage();
+        } 
+    }
+
+function AfficherDiscution($db){
+
+
+}
+
+
+
+
+
+function AfficherMessage($db,$Identifiant){
+    
+    $donnees = $db->query("SELECT nom, prenom, contenu
+                            FROM users
+                            INNER JOIN messages 
+                            ON users.id = messages.id_expediteur WHERE users.id= $Identifiant");
+    $data = $donnees->fetchAll(PDO::FETCH_ASSOC);
+   
+    echo "<hr><h2>Les Messages</h2><br>";
+    foreach ($data as $row) {
+        foreach ($row as $column => $value) {
+            echo "$column: $value<br>";
         }
+        echo "<br>";
     }
 }
+
+
 ?>
 
 </body>
