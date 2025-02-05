@@ -8,45 +8,33 @@
 <body>
 
 <?php
+include "Connexion.php";  
+echo "Bdd connecté<br>";
 
-
-include "bdd.php";  
-echo "Bdd connecté";
-
-
-allItems($db , "users");
-allItems($db , "messages");
-
-
-// affiche toutes les entrées de la table specifié
-function allItems($db, $table){
-    
-
-    $CourStatement=$db -> prepare("SELECT * FROM $table");
-    $CourStatement -> execute();
-    $donnees=$CourStatement->fetchAll();
-    
-    
-    foreach ($donnees as $cours) {
-        
-        $i = 0;
-        
-        echo "<hr> $table <br>";
-        while ($i < count($cours)/2): // ATTENTION : si bug d'affichage sur votre bdd, enlevez le /2 (bidouillage)
-            
-            
-            echo "$cours[$i] <br>";
-            
-            $i++;
-            
-        endwhile;
-    }
-    
+try {
+    displayTableData($db, ["users", "messages"]);
+} catch (Exception $e) {
+    echo "Erreur : " . $e->getMessage();
 }
 
-
-
-
+function displayTableData($db, $tables) {
+    foreach ($tables as $table) {
+        try {
+            $stmt = $db->query("SELECT * FROM $table");
+            $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            
+            echo "<hr>Table: $table<br>";
+            foreach ($data as $row) {
+                foreach ($row as $column => $value) {
+                    echo "$column: $value<br>";
+                }
+                echo "<br>";
+            }
+        } catch (Exception $e) {
+            echo "Erreur lors de la récupération des données de la table $table : " . $e->getMessage();
+        }
+    }
+}
 ?>
 
 </body>
