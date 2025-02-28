@@ -3,10 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
-    <link rel="stylesheet" href="style.css">
-
+    <title>Fonctions messages</title>
 </head>
 <body>
 
@@ -14,135 +11,59 @@
 
 
 include "bdd.php";  
-echo "Bdd connecté";
+// echo "Bdd connecté";
 
 
 allItems($db , "users");
 allItems($db , "messages");
-allItems($db , "groupes");
-allItems($db , "posts");
-
-
-// afficherMessage($db, 1);
-
-afficherGLOBAL($db, 3); // on entre en 2e paramettre le filtre (ID-users benevole pour le moment)
-afficherGLOBAL($db, 4); // on entre en 2e paramettre le filtre (ID-users benevole pour le moment)
-
-//------------------------------------------------------------------------------------------------------- 
-// ---------------------------------------------- FONCTIONS----------------------------------------------
-//-------------------------------------------------------------------------------------------------------
 
 
 
 
+afficherMessage($db, 1);
 
-
-function afficherGLOBAL($db, $filtre){
     
-    echo "<div class='cube'>";
-    
-    afficherGroupe($db, $filtre); 
-    AfficherMessage($db, $filtre);
-
-    echo "</div>";
-}
-
-
-
 
 
 // affiche toutes les entrées de la table specifié
 function allItems($db, $table){
     
-    
+
     $CourStatement=$db -> prepare("SELECT * FROM $table");
     $CourStatement -> execute();
     $donnees=$CourStatement->fetchAll(PDO::FETCH_ASSOC);
     
-    echo "<h2> table=  $table </h2><br>"; // annonce de quelle table l'item proviens
-    
+    echo "<hr>";
+    echo "<hr> <h2> $table </h2><br>"; // annonce de quelle table l'item proviens
     foreach ($donnees as $cours) {
-        echo "<div class='cube'>";
+
 
         foreach($cours as $column => $value){
             echo "$column: $value";
             echo "<br>";
-
         }
-        echo "</div>";
-    }  
-
-
-}
-
-
-
-
-
-
-// afficher un groupe:
-function afficherGroupe($db, $filtre){
-
-    echo "<h2>afficher groupe</h2>"; 
-
-    $CourStatement=$db -> prepare("SELECT * FROM groupes 
-                                    INNER JOIN users 
-                                    ON groupes.id_usersCrea = users.id_users 
-                                    INNER JOIN posts 
-                                    ON groupes.id_post = posts.id_posts
-                                    WHERE id_usersCrea = $filtre");
-                                    
-    $CourStatement -> execute();
-    $donnees=$CourStatement->fetchAll(PDO::FETCH_ASSOC);
-    
-    
-
-    foreach ($donnees as $data) {
-
-
-        echo "<ul>
-                <h3>$data[titre]</h3>
-                <p class='$data[type]'>$data[nom] $data[date_crea]</p>
-                <a href=''>$data[email]</a>
-
-                <p>$data[content]</p>
-
-                <p><b> Skills Requis: </b></p>
-                <li>$data[skills]</li>
-
-            </ul>";
-        
-        echo "<button action='submit'> Regarder </button> ";
+        echo '<hr>';
     }  
 }
 
-
-
-
-
-
-
-
-
-function AfficherMessage($db, $filtre){
+function AfficherMessage($db, $ID_destinataire){
     
-    echo "<h2> Afficher Messages </h2><br>"; // annonce de quelle table l'item proviens
+    echo "<hr> <h2> Afficher Messages </h2><br>"; // annonce de quelle table l'item proviens
 
     $CourStatement=$db -> prepare("SELECT *
                                     FROM messages
-                                    INNER JOIN groupes
-                                    ON messages.id_message = groupes.id_groupe 
                                     INNER JOIN users
-                                    ON messages.id_users = users.id_users 
-                                    WHERE users.id_users = $filtre
-                                    ORDER BY messages.date_crea" );
+                                    ON messages.id_message = users.id_users
+                                    WHERE users.id_users = $ID_destinataire 
+                                    -- ORDER BY date_crea
+                                    " );
                         // Users.id doit etre l'ID du destinataire.
                             
     $CourStatement -> execute();
     $donnees=$CourStatement->fetchAll(PDO::FETCH_ASSOC);
 
     
-    echo "<div class='ZoneMessage'>" ;
+
 
     foreach ($donnees as $data) {
 
@@ -152,16 +73,23 @@ function AfficherMessage($db, $filtre){
          $data[contenu] </p>";
         
     }
-    echo "</div>";
 }
 
 
 ?>
 
+<style>
 
+.non-lu{
+    color: red;
+}
+.lu{
+    color: green;
+}
 
+</style>
 <!-- ****** AJOUTER COURS ****** -->
-<!-- <h2> Ajout d'un nouveau Cour</h2>
+<h2> Ajout d'un nouveau Cour</h2>
 
 <form action="ajouterMessager.php" method="post">
     <fieldset>
@@ -182,7 +110,7 @@ function AfficherMessage($db, $filtre){
                     <input type="submit" 
                             value="ajouter"/>
     </fieldset>
-</form> -->
+</form>
 
 
 
