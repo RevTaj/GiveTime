@@ -10,31 +10,18 @@
 <?php
 
 
-include "bdd.php";  
+include "../bdd.php";  
 // echo "Bdd connecté";
 
 
-allItems($db , "users");
-allItems($db , "messages");
-
-
-
-
-afficherMessage($db, 1);
-
     
 
-
-// affiche toutes les entrées de la table specifié
-function allItems($db, $table){
-    
-
-    $CourStatement=$db -> prepare("SELECT * FROM $table");
+    $CourStatement=$db -> prepare("SELECT * FROM gt_inscription");
     $CourStatement -> execute();
     $donnees=$CourStatement->fetchAll(PDO::FETCH_ASSOC);
     
     echo "<hr>";
-    echo "<hr> <h2> $table </h2><br>"; // annonce de quelle table l'item proviens
+    echo "<hr> <h2> Inscription </h2><br>"; // annonce de quelle table l'item proviens
     foreach ($donnees as $cours) {
 
 
@@ -44,9 +31,7 @@ function allItems($db, $table){
         }
         echo '<hr>';
     }  
-}
 
-function AfficherMessage($db, $ID_destinataire){
     
     echo "<hr> <h2> Afficher Messages </h2><br>"; // annonce de quelle table l'item proviens
 
@@ -73,7 +58,7 @@ function AfficherMessage($db, $ID_destinataire){
          $data[contenu] </p>";
         
     }
-}
+
 
 
 ?>

@@ -7,7 +7,7 @@
 </head>
 <body>
   <a href="../index.html" class="back-button">Retour</a>
-  <h1>Page de Connexion</h1>
+  <h1>Page de Connexion - Administrateur</h1>
   <div class="container">
     <fieldset>
       <legend>Authentification</legend>

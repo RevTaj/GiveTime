@@ -89,6 +89,29 @@
                 <form method="post" action="" id="supr">
                     <select name="id_Posts" form="supr">
                         <?php
+                    // --------------------------------------------------
+                    // --------------------------------------------------
+                                    //Zone d'update pour eviter de Refresh  
+                        if (isset($_POST['update']) && !empty($_POST['id_Posts']) && !empty($_POST['titre']) && !empty($_POST['tag']) && !empty($_POST['description'])) {
+                            $sqlUpdateQuery = "UPDATE gt_Posts
+                                            SET TitrePosts = :TitrePosts, tag = :tag, description = :description
+                                            WHERE id_Posts = :id_Posts AND Association_id = :Association_id";
+
+                            $stmt = $db->prepare($sqlUpdateQuery);
+                            $stmt->execute(array(
+                                ':TitrePosts' => $_POST['titre'],
+                                ':tag' => $_POST['tag'],
+                                ':description' => $_POST['description'],
+                                ':id_Posts' => $_POST['id_Posts'],
+                                ':Association_id' => $id_association
+                            ));
+
+                            echo "Posts mis à jour avec succès.";
+                        }
+                    // --------------------------------------------------
+                    // --------------------------------------------------
+
+
                         $modif = $db->prepare("SELECT * FROM gt_Posts WHERE Association_id = :Association_id");
                         $modif->execute(array(':Association_id' => $id_association));
                         $modifs = $modif->fetchAll();
@@ -187,22 +210,7 @@
                 <?php
                 }
 
-                if (isset($_POST['update']) && !empty($_POST['id_Posts']) && !empty($_POST['titre']) && !empty($_POST['tag']) && !empty($_POST['description'])) {
-                    $sqlUpdateQuery = "UPDATE gt_Posts
-                                       SET TitrePosts = :TitrePosts, tag = :tag, description = :description
-                                       WHERE id_Posts = :id_Posts AND Association_id = :Association_id";
 
-                    $stmt = $db->prepare($sqlUpdateQuery);
-                    $stmt->execute(array(
-                        ':TitrePosts' => $_POST['titre'],
-                        ':tag' => $_POST['tag'],
-                        ':description' => $_POST['description'],
-                        ':id_Posts' => $_POST['id_Posts'],
-                        ':Association_id' => $id_association
-                    ));
-
-                    echo "Posts mis à jour avec succès.";
-                }
                 ?>
             </div>
         </div>
