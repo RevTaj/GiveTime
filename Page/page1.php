@@ -157,11 +157,14 @@
                 $Posts = $Postsuivie->fetchAll();
 
                 foreach ($Posts as $lesPostssuivies) {
-                    echo "<ul><li>".$lesPostssuivies['TitrePosts']." - Progression : ".$lesPostssuivies['progression']."%</ul></li>";
+                    echo "<ul><li>".$lesPostssuivies['TitrePosts']." - Progression : ".$lesPostssuivies['progression']."%</ul></li> 
+                    <form action='../Messagerie/MessagerieBenevole.php' method='Post'>
+                    <button type='submit' value=".$lesPostssuivies['id_Posts']."> Regarder mes messages</button>
+                    </form> ";
+                    
                     }
 
                 ?>
-
             </div>
         </div>
 
