@@ -16,7 +16,7 @@
     ?>
 </head>
 <body>
-<h1>Inscription ou désinscription d'un Posts</h1>
+<h1>Inscription ou désinscription d'une mission</h1>
     <div class="container">
         <div class="header">
             <a href="../Connexion/deconnexion.php" class="logout">Se déconnecter</a>
@@ -26,7 +26,7 @@
 
         <div class="content">
             <div class="left-section">
-                <h1>S'inscrire à un Posts :</h1>
+                <h1>S'inscrire à une mission :</h1>
                 <form method="post" action="">
                     <select name="Posts" id="Posts">
                         <?php
@@ -114,13 +114,10 @@
                 }
                 ?>
 
-                <h1>Voir ma progression : </h1>
-                <a href="MesPosts.php" class="logout">Ma progression</a>
-            
             </div>
 
             <div class="right-section">
-                <h1>Listes des Posts :</h1>
+                <h1>Listes des Missions :</h1>
 
                 
                 <?php 
@@ -149,7 +146,7 @@
                 }
                 ?>
 
-                <h1>Les Posts suivie :</h1>
+                <h1>Les Missions suivies :</h1>
                 <?php 
                 $id_benevole = $_SESSION['Identifiant'];
                 $Postsuivie = $db->prepare("SELECT * FROM gt_Inscription JOIN gt_Posts ON gt_Inscription.Posts_id=gt_Posts.id_Posts WHERE benevole_id=$id_benevole");
@@ -159,7 +156,7 @@
                 foreach ($Posts as $lesPostssuivies) {
                     echo "<ul><li>".$lesPostssuivies['TitrePosts']." - Progression : ".$lesPostssuivies['progression']."%</ul></li> 
                     <form action='../Messagerie/MessagerieBenevole.php' method='Post'>
-                    <button type='submit' value=".$lesPostssuivies['id_Posts']."> Regarder mes messages</button>
+                    <button type='submit' name='idMessageForm' value=".$lesPostssuivies['id_Posts']."> Regarder mes messages</button>
                     </form> ";
                     
                     }
