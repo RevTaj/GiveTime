@@ -1,0 +1,283 @@
+html, body { 
+    font-family: Arial, sans-serif; 
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    background-color: #f18700; /* Couleur primaire */
+    padding: 10px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+header nav {
+    display: flex;
+    gap: 20px;
+    margin-left: 75%;
+}
+
+header nav a {
+    color: white; /* Texte en blanc pour contraster avec l'arrière-plan */
+    text-decoration: none;
+    font-size: 1.1em;
+    padding: 10px 15px;
+    transition: background 0.3s ease, transform 0.3s ease;
+    border-radius: 4px;
+}
+
+header nav a:hover {
+    background-color: #79c6c0; /* Couleur tertiaire */
+    transform: scale(1.05);
+}
+
+h1 {
+    font-size: 2.5em;
+    color: #333;
+    text-align: center;
+    margin-top: 20px;
+}
+
+h2 {
+    font-size: 2em;
+    color: #333;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.container {
+    text-align: center;
+    margin-top: 20px;
+    flex: 1;
+}
+
+.container .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #f18700; /* Couleur primaire */
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background 0.3s ease, transform 0.3s ease;
+    margin: 5px;
+}
+
+.container .btn:hover {
+    background: #79c6c0; /* Couleur tertiaire */
+    transform: scale(1.05);
+}
+
+.form-container {
+    display: none;
+    margin: 20px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 600px; /* Augmenter la largeur maximale */
+    width: 90%; /* Prendre 90% de la largeur de la page */
+}
+
+.form-container h2 {
+    margin-bottom: 20px;
+}
+
+.form-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-container label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-container input, .form-container select, .form-container textarea {
+    margin-bottom: 15px;
+    padding: 15px; /* Augmenter le padding */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+}
+
+.form-container button {
+    padding: 15px 20px; /* Augmenter le padding */
+    background: #f18700; /* Couleur primaire */
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background 0.3s ease, transform 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.form-container button:hover {
+    background: #79c6c0; /* Couleur tertiaire */
+    transform: scale(1.05);
+}
+
+/* Wrapper pour le formulaire et la prévisualisation */
+.form-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 30px;
+    margin: 20px auto;
+    max-width: 1200px;
+    width: 90%;
+}
+
+/* Mise à jour du style du formulaire pour l'affichage côte à côte */
+.form-wrapper .form-container {
+    display: block;
+    margin: 0;
+    width: 50%;
+    max-width: none;
+}
+
+/* Style pour le conteneur de prévisualisation */
+.preview-container {
+    width: 50%;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.preview-container h2 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.preview-container img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    display: block;
+    margin: 0 auto 20px;
+    border: 1px solid #ddd;
+    object-fit: cover; /* Pour que l'image remplisse le conteneur circulaire */
+    object-position: top; /* Pour que le haut de l'image soit centré */
+}
+
+.preview-container p {
+    margin-bottom: 10px;
+}
+.message {
+    padding: 15px;
+    margin: 20px auto;
+    max-width: 600px;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.message.error {
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    color: #721c24;
+}
+
+.message.success {
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    color: #155724;
+}
+/* Style pour le conteneur des tags */
+.tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+/* Style pour chaque case à cocher de tag */
+.tag-checkbox {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.tag-checkbox:hover {
+    background-color: #f5f5f5;
+}
+
+.tag-checkbox input {
+    margin-right: 5px;
+}
+
+.tag-checkbox input:checked + .tag-checkbox {
+    background-color: #f18700;
+    color: white;
+    transform: scale(1.05);
+}
+
+/* Adaptations pour les écrans mobiles */
+@media (max-width: 768px) {
+    .form-wrapper {
+        flex-direction: column;
+    }
+    
+    .form-wrapper .form-container,
+    .preview-container {
+        width: 100%;
+    }
+}
+
+.footer {
+    background-color: #f18700;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    margin-top: auto;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-left, .footer-center, .footer-right {
+    flex: 1;
+    margin: 10px;
+}
+
+.footer-left h3, .footer-center h4, .footer-right h4 {
+    margin-bottom: 10px;
+}
+
+.footer-left p, .footer-center p, .footer-right p {
+    margin: 5px 0;
+}
+
+.social-links a {
+    margin: 0 10px;
+    display: inline-block;
+}
+
+.social-links img {
+    width: 24px;
+    height: 24px;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.social-links img:hover {
+    opacity: 1;
+}
+
+.footer-bottom {
+    margin-top: 20px;
+    font-size: 14px;
+}
