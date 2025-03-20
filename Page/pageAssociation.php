@@ -68,7 +68,7 @@
                         'Association_id' => $id_association
                     ));
                     $count = $checkStmt->fetchColumn();
-
+                    
                     if ($count > 0) {
                         echo "Un Posts avec ce titre existe déjà pour cet enseignant.";
                     } else {
