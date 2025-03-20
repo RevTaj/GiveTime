@@ -1,4 +1,4 @@
-/* Style général de la page */
+/* Style de la page */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -6,8 +6,6 @@ body {
     background-color: #f3f3f3;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
     height: 100vh;
 }
 
@@ -16,33 +14,30 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 90%;
-    width: 95%;
+    height: 100%;
     max-width: 600px;
+    margin: 0 auto;
     border: 1px solid #ccc;
     background-color: #ffffff;
     border-radius: 10px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     overflow: hidden;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Zone des messages */
+/* Section des messages */
 .message-list {
     flex-grow: 1;
     padding: 15px;
     overflow-y: auto;
     background-color: #f9f9f9;
-    display: flex;
-    flex-direction: column;
 }
 
 .message {
-    padding: 10px 15px;
+    padding: 10px;
     margin-bottom: 10px;
     border-radius: 8px;
     max-width: 70%;
     word-wrap: break-word;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .message.sent {
@@ -57,7 +52,7 @@ body {
     color: #495057;
 }
 
-/* Champs du formulaire */
+/* Section du formulaire */
 .message-input {
     display: flex;
     padding: 10px;
@@ -83,23 +78,8 @@ body {
     border-radius: 20px;
     cursor: pointer;
     font-size: 16px;
-    transition: background-color 0.3s ease;
 }
 
 .message-input button:hover {
     background-color: #084298;
-}
-
-/* Scrollbar personnalisée */
-.message-list::-webkit-scrollbar {
-    width: 8px;
-}
-
-.message-list::-webkit-scrollbar-thumb {
-    background-color: #ccc;
-    border-radius: 4px;
-}
-
-.message-list::-webkit-scrollbar-thumb:hover {
-    background-color: #aaa;
 }
