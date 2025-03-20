@@ -155,7 +155,10 @@
                 $Postsuivie->execute(array(':id_Prof' => $id_association));
                 $Posts = $Postsuivie->fetchAll();
                 foreach ($Posts as $lesPostssuivies) {
-                    echo "<ul><li>", htmlspecialchars($lesPostssuivies['TitrePosts']), "</li></ul>";
+                    echo "<ul><li>", htmlspecialchars($lesPostssuivies['TitrePosts']), "</li></ul>
+                    <form action='../Messagerie/MessagerieAssociation.php' method='Post'>
+                    <button type='submit' name='idMissionForm' value=".$lesPostssuivies['id_Posts']."> Regarder mes messages</button>
+                    </form> ";
                 }
                 ?>
 
