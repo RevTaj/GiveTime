@@ -74,12 +74,12 @@ h2 {
 .container .btn {
     display: inline-block;
     padding: 10px 20px;
-    background: #f18700; /* Couleur primaire */
+    background: #f18700;
     color: white;
     text-decoration: none;
     border-radius: 4px;
     transition: background 0.3s ease, transform 0.3s ease;
-    margin: 5px;
+    margin: 10px;  /* Increased from 5px to 10px */
 }
 
 .container .btn:hover,#btn4:hover {
@@ -90,12 +90,12 @@ h2 {
 .btn {
     display: inline-block;
     padding: 10px 20px;
-    background: #f18700; /* Couleur primaire */
+    background: #f18700;
     color: white;
     text-decoration: none;
     border-radius: 4px;
     transition: background 0.3s ease, transform 0.3s ease;
-    margin: 10px;
+    margin: 15px;  /* Increased from 10px to 15px */
 }
 
 .btn:hover {
@@ -192,7 +192,7 @@ h2 {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 15px;
+    gap: 25px;  /* Increased from 15px to 25px */
     margin: 30px auto;
     max-width: 600px;
 }
