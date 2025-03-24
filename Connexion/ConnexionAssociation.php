@@ -50,7 +50,7 @@ if (isset($login) && isset($mdp)) {
         $_SESSION['Identifiant'] = $test['id_Association'];
         $_SESSION['Permission'] = 3;
         $_SESSION['date'] = date("Y-m-d");
-        header('location: ../Page/pageAssociation.php');
+        header('location: ../Page/page1-Asso.php'); // On renvoie sur la page par défaut des asso
     }else {
         header('location: ../index/indexAssociation.php?msg="Erreur de login / Erreur de mot de passe"');
     }

@@ -4,16 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/style-page-Association.css">
-    <title>Gestion des Posts</title>
+    <title>Gestion des Missions</title>
 
     <?php    
         include ('../include/header.php');
     ?>
 </head>
 <body>
-    <h1>Gestion des Posts</h1> <!-- Titre centré en haut -->
+    <h1>Gestion des Missions</h1> <!-- Titre centré en haut -->
     <?php
-    session_start();
     if ($_SESSION['authentification'] == false || $_SESSION['Permission'] < 3 || $_SESSION['Permission'] > 3 ) {
         header('Location: ../Connexion/Erreur.php');
         exit;
@@ -37,24 +36,23 @@
                 echo "Bonjour " . htmlspecialchars($nomAssociation) ." !";
                 ?>
             </div>
-            <a href="../Connexion/deconnexion.php" class="logout">Se déconnecter</a>
         </div>
         <div class="content">
             <div class="left-section">
-                <h2>Ajouter un Posts :</h2>
+                <h2>Ajouter une mission :</h2>
                 <form action="" method="POST" id="crea">
                     <fieldset>
-                        <legend>Veuillez saisir les informations du Posts :</legend>
+                        <legend>Veuillez saisir les informations de la mission :</legend>
                         <p>
-                            <label for="titre">Titre du Posts :</label>
+                            <label for="titre">Titre de la mission :</label>
                             <input type="text" name="titre" id="titre" required>
                         </p>
                         <p>
-                            <label for="tag">Tag du Posts :</label>
+                            <label for="tag">Tag la mission :</label>
                             <input type="text" name="tag" id="tag" required>
                         </p>
                         <p>
-                            <label for="description">Description du Posts :</label>
+                            <label for="description">Description la mission :</label>
                             <input type="text" name="description" id="description" required>
                         </p>
                         <p>
@@ -89,7 +87,7 @@
                 }
                 ?>
 
-                <h2>Supprimer un Posts :</h2>
+                <h2>Supprimer une mission :</h2>
                 <form method="post" action="" id="supr">
                     <select name="id_Posts" form="supr">
                         <?php
@@ -153,7 +151,7 @@
             </div>
 
             <div class="right-section">
-                <h2>Vos Posts :</h2>
+                <h2>Vos missions créer :</h2>
                 <?php
                 $Postsuivie = $db->prepare("SELECT * FROM gt_Posts WHERE Association_id = :id_Prof ORDER BY tag");
                 $Postsuivie->execute(array(':id_Prof' => $id_association));
@@ -166,7 +164,7 @@
                 }
                 ?>
 
-                <h2>Modifier un Posts :</h2>
+                <h2>Modifier une mission :</h2>
                 <form method="post" action="" id="modif">
                     <select name="id_Posts" form="modif">
                         <?php
@@ -194,19 +192,19 @@
                     ));
                     $Posts = $query->fetch(PDO::FETCH_ASSOC);
                 ?>
-                    <h2>Modifier le Posts : <?= htmlspecialchars($Posts['TitrePosts']); ?></h2>
+                    <h2>Modifier la mission : <?= htmlspecialchars($Posts['TitrePosts']); ?></h2>
                     <form method="post" action="">
                         <input type="hidden" name="id_Posts" value="<?= $Posts['id_Posts']; ?>">
                         <p>
-                            <label for="titre">Titre du Posts :</label>
+                            <label for="titre">Titre de la mission :</label>
                             <input type="text" name="titre" id="titre" value="<?= htmlspecialchars($Posts['TitrePosts']); ?>" required>
                         </p>
                         <p>
-                            <label for="tag">Tag du Posts :</label>
+                            <label for="tag">Tag de la mission :</label>
                             <input type="text" name="tag" id="tag" value="<?= htmlspecialchars($Posts['tag']); ?>" required>
                         </p>
                         <p>
-                            <label for="description">Description du Posts :</label>
+                            <label for="description">Description de la mission :</label>
                             <input type="text" name="description" id="description" value="<?= htmlspecialchars($Posts['Description']); ?>" required>
                         </p>
                         <p>

@@ -4,6 +4,7 @@ html, body {
     margin: 0;
     padding: 0;
 }
+/* Header et navigation */
 header {
     background-color: #f18700; /* Couleur primaire */
     padding: 10px 20px; /* Ajout de padding horizontal */
@@ -16,6 +17,20 @@ header nav {
     justify-content: flex-end; /* Aligne les éléments à droite */
     margin-right: 30px; /* Ajoute de l'espace à droite */
     margin-left: 0; /* Supprime le margin-left existant */
+}
+
+header nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1em;
+    padding: 10px 15px;
+    transition: background 0.3s ease, transform 0.3s ease;
+    border-radius: 4px;
+}
+
+header nav a:hover {
+    background-color: #79c6c0;
+    transform: scale(1.05);
 }
 h1 {
     font-size: 2.5em;
@@ -151,7 +166,32 @@ button:hover {
     background: #79c6c0; /* Couleur tertiaire */
     transform: scale(1.05);
 }
+.scrollable-list {
+    max-height: 400px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
 
+.scrollable-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.scrollable-list::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.scrollable-list::-webkit-scrollbar-thumb {
+    background: #f18700;
+    border-radius: 4px;
+}
+
+.scrollable-list::-webkit-scrollbar-thumb:hover {
+    background: #79c6c0;
+}
 .footer {
     background-color: #f18700;
     color: white;

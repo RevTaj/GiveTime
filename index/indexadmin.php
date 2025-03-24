@@ -9,7 +9,7 @@
 <?php 
 include("../include/header.php");
 ?>
-  <a href="../index.php" class="back-button">Retour</a>
+  <a href="../index.html" class="back-button">Retour</a>
   <h1>Page de Connexion - Administrateur</h1>
   <div class="container">
     <fieldset>

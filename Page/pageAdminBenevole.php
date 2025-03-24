@@ -12,10 +12,7 @@
 </head>
 <body>
     <h1>Gestion des Bénévoles</h1> <!-- Titre centré en haut -->
-
-    <a href="../Connexion/deconnexion.php" class="logout">Se déconnecter</a>
     <?php
-    session_start();
     // Afficher les erreurs pour le débogage
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
@@ -130,53 +127,55 @@
     //----------------------------------------------------------  Récupérer la liste des Bénévoles
     $query = $db->prepare("SELECT * FROM GT_Benevole");
     $query->execute();
-    $Associations = $query->fetchAll(PDO::FETCH_ASSOC);
+    $benevoles = $query->fetchAll(PDO::FETCH_ASSOC);
     ?>
 
     <div class="container">
         <div class="content">
             <div class="left-section">
                 <h2>Liste des Bénévoles :</h2>
-                <ul>
-                    <?php foreach ($Associations as $Association): ?>
-                        <li>
-                            <?= htmlspecialchars($Association['prenomBenevole'] . ' ' . $Association['nomBenevole']); ?>
-                            <form method="post" action="" style="display:inline;">
-                                <input type="hidden" name="id_Benevole" value="<?= $Association['id_Benevole']; ?>">
-                                <input type="submit" name="delete_Benevole" value="Supprimer">
-                            </form>
-                            <button onclick="document.getElementById('editForm-<?= $Association['id_Benevole']; ?>').style.display='block'">Modifier</button>
-                            <div id="editForm-<?= $Association['id_Benevole']; ?>" style="display:none;">
-                                <form method="post" action="">
-                                    <input type="hidden" name="id_Benevole" value="<?= $Association['id_Benevole']; ?>">
-                                    <p>
-                                        <label for="nom">Nom :</label>
-                                        <input type="text" name="nom" id="nom" value="<?= htmlspecialchars($Association['nomBenevole']); ?>" required>
-                                    </p>
-                                    <p>
-                                        <label for="prenom">Prénom :</label>
-                                        <input type="text" name="prenom" id="prenom" value="<?= htmlspecialchars($Association['prenomBenevole']); ?>" required>
-                                    </p>
-                                    <p>
-                                        <label for="email">Email :</label>
-                                        <input type="email" name="email" id="email" value="<?= htmlspecialchars($Association['mailBenevole']); ?>" required>
-                                    </p>
-                                    <p>
-                                        <label for="login">Login :</label>
-                                        <input type="text" name="login" id="login" value="<?= htmlspecialchars($Association['loginBenevole']); ?>" required>
-                                    </p>
-                                    <p>
-                                        <label for="mdp">Mot de passe (laisser vide pour ne pas changer) :</label>
-                                        <input type="password" name="mdp" id="mdp">
-                                    </p>
-                                    <p>
-                                        <input type="submit" name="update_Benevole" value="Modifier">
-                                    </p>
+                <div class="scrollable-list">
+                    <ul>
+                        <?php foreach ($benevoles as $benevole): ?>
+                            <li>
+                                <?= htmlspecialchars($benevole['prenomBenevole'] . ' ' . $benevole['nomBenevole']); ?>
+                                <form method="post" action="" style="display:inline;">
+                                    <input type="hidden" name="id_Benevole" value="<?= $benevole['id_benevole']; ?>">
+                                    <input type="submit" name="delete_Benevole" value="Supprimer">
                                 </form>
-                            </div>
-                        </li>
-                    <?php endforeach; ?>
-                </ul>
+                                <button onclick="document.getElementById('editForm-<?= $benevole['id_benevole']; ?>').style.display='block'">Modifier</button>
+                                <div id="editForm-<?= $benevole['id_benevole']; ?>" style="display:none;">
+                                    <form method="post" action="">
+                                        <input type="hidden" name="id_Benevole" value="<?= $benevole['id_benevole']; ?>">
+                                        <p>
+                                            <label for="nom">Nom :</label>
+                                            <input type="text" name="nom" id="nom" value="<?= htmlspecialchars($benevole['nomBenevole']); ?>" required>
+                                        </p>
+                                        <p>
+                                            <label for="prenom">Prénom :</label>
+                                            <input type="text" name="prenom" id="prenom" value="<?= htmlspecialchars($benevole['prenomBenevole']); ?>" required>
+                                        </p>
+                                        <p>
+                                            <label for="email">Email :</label>
+                                            <input type="email" name="email" id="email" value="<?= htmlspecialchars($benevole['mailBenevole']); ?>" required>
+                                        </p>
+                                        <p>
+                                            <label for="login">Login :</label>
+                                            <input type="text" name="login" id="login" value="<?= htmlspecialchars($benevole['loginBenevole']); ?>" required>
+                                        </p>
+                                        <p>
+                                            <label for="mdp">Mot de passe (laisser vide pour ne pas changer) :</label>
+                                            <input type="password" name="mdp" id="mdp">
+                                        </p>
+                                        <p>
+                                            <input type="submit" name="update_Benevole" value="Modifier">
+                                        </p>
+                                    </form>
+                                </div>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
             </div>
 
             <div class="right-section">
@@ -208,8 +207,9 @@
                 </form>
             </div>
         </div>
-        <a href="pageAdmin.php"><button>Retour</button></a> <!-- Bouton de retour -->
-    </div>
+        <div class="admin-link">
+        <a href="pageAdmin.php" class="btn">Retour</a> <!-- Bouton de retour -->
+        </div></div>
     
     
     

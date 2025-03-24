@@ -5,15 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/style-admin.css">
     <title>Admin - Gestion des GT_Association</title>
-
-    <?php    include ('../include/header.php');
-        ?>
+    <?php include ('../include/header.php'); ?>
 </head>
 <body>
     <h1>Gestion des Associations</h1> <!-- Titre centré en haut -->
-    <a href="../Connexion/deconnexion.php" class="logout">Se déconnecter</a>
     <?php
-    session_start();
     // Afficher les erreurs pour le débogage
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
@@ -137,56 +133,58 @@
     ?>
 
     <div class="container">
-    <div class="welcome-message">
-                <?php
-                // Afficher le message de bienvenue
-                echo "Bonjour " . htmlspecialchars($prenomAssociation) ." ".htmlspecialchars($nomAssociation). " !" ;
-                ?>
-    </div>
+        <div class="welcome-message">
+            <?php
+            // Afficher le message de bienvenue
+            echo "Bonjour " . htmlspecialchars($prenomAssociation) ." ".htmlspecialchars($nomAssociation). " !" ;
+            ?>
+        </div>
         <div class="content">
             
             <div class="left-section">
                 <h2>Liste des Associations :</h2>
-                <ul>
-                    <?php foreach ($Associations as $Association): ?>
-                        <li>
-                            <?= htmlspecialchars($Association['prenomAssociation'] . ' ' . $Association['nomAssociation']); ?>
-                            <form method="post" action="" style="display:inline;">
-                                <input type="hidden" name="id_asso" value="<?= $Association['id_Association']; ?>">
-                                <input type="submit" name="delete_asso" value="Supprimer">
-                            </form>
-                            <button onclick="document.getElementById('editForm-<?= $Association['id_Association']; ?>').style.display='block'">Modifier</button>
-                            <div id="editForm-<?= $Association['id_Association']; ?>" style="display:none;">
-                                <form method="post" action="">
+                <div class="scrollable-list">
+                    <ul>
+                        <?php foreach ($Associations as $Association): ?>
+                            <li>
+                                <?= htmlspecialchars($Association['prenomAssociation'] . ' ' . $Association['nomAssociation']); ?>
+                                <form method="post" action="" style="display:inline;">
                                     <input type="hidden" name="id_asso" value="<?= $Association['id_Association']; ?>">
-                                    <p>
-                                        <label for="nom">Nom :</label>
-                                        <input type="text" name="nom" id="nom" value="<?= htmlspecialchars($Association['nomAssociation']); ?>" required>
-                                    </p>
-                                    <p>
-                                        <label for="prenom">Prénom :</label>
-                                        <input type="text" name="prenom" id="prenom" value="<?= htmlspecialchars($Association['prenomAssociation']); ?>" required>
-                                    </p>
-                                    <p>
-                                        <label for="email">Email :</label>
-                                        <input type="email" name="email" id="email" value="<?= htmlspecialchars($Association['mailAssociation']); ?>" required>
-                                    </p>
-                                    <p>
-                                        <label for="login">Login :</label>
-                                        <input type="text" name="login" id="login" value="<?= htmlspecialchars($Association['loginAssociation']); ?>" required>
-                                    </p>
-                                    <p>
-                                        <label for="mdp">Mot de passe (laisser vide pour ne pas changer) :</label>
-                                        <input type="password" name="mdp" id="mdp">
-                                    </p>
-                                    <p>
-                                        <input type="submit" name="update_asso" value="Modifier">
-                                    </p>
+                                    <input type="submit" name="delete_asso" value="Supprimer">
                                 </form>
-                            </div>
-                        </li>
-                    <?php endforeach; ?>
-                </ul>
+                                <button onclick="document.getElementById('editForm-<?= $Association['id_Association']; ?>').style.display='block'">Modifier</button>
+                                <div id="editForm-<?= $Association['id_Association']; ?>" style="display:none;">
+                                    <form method="post" action="">
+                                        <input type="hidden" name="id_asso" value="<?= $Association['id_Association']; ?>">
+                                        <p>
+                                            <label for="nom">Nom :</label>
+                                            <input type="text" name="nom" id="nom" value="<?= htmlspecialchars($Association['nomAssociation']); ?>" required>
+                                        </p>
+                                        <p>
+                                            <label for="prenom">Prénom :</label>
+                                            <input type="text" name="prenom" id="prenom" value="<?= htmlspecialchars($Association['prenomAssociation']); ?>" required>
+                                        </p>
+                                        <p>
+                                            <label for="email">Email :</label>
+                                            <input type="email" name="email" id="email" value="<?= htmlspecialchars($Association['mailAssociation']); ?>" required>
+                                        </p>
+                                        <p>
+                                            <label for="login">Login :</label>
+                                            <input type="text" name="login" id="login" value="<?= htmlspecialchars($Association['loginAssociation']); ?>" required>
+                                        </p>
+                                        <p>
+                                            <label for="mdp">Mot de passe (laisser vide pour ne pas changer) :</label>
+                                            <input type="password" name="mdp" id="mdp">
+                                        </p>
+                                        <p>
+                                            <input type="submit" name="update_asso" value="Modifier">
+                                        </p>
+                                    </form>
+                                </div>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
             </div>
 
             <div class="right-section">
