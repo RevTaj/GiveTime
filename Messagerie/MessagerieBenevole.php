@@ -7,6 +7,7 @@
     <title>Document</title>
 </head>
 <body>
+    <a href="../page/page1.php">Retour a ma page d'accueil</a>
     <h1> Bienvenu sur messagerie benevole</h1>
    
 <?php
