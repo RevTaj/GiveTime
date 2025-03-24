@@ -2,6 +2,7 @@
 // Connexion à la base de données
 
 include '../bdd.php';
+
 $results = [];
 
 // Fonction pour calculer la similarité
