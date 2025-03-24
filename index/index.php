@@ -6,6 +6,9 @@
   <link rel="stylesheet" href="../css/style-form.css">
 </head>
 <body>
+<?php 
+include("../include/header.php");
+?>
   <a href="../index.php" class="back-button">Retour</a>
   <h1>Page de Connexion - Benevole</h1>
   <div class="container">
