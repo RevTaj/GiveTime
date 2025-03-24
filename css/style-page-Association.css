@@ -113,8 +113,19 @@ input[type="submit"], input[type="reset"], button {
 }
 
 input[type="submit"]:hover, input[type="reset"]:hover, button:hover {
-    background: #79c6c0; /* Couleur tertiaire */
     transform: scale(1.05);
+}
+
+.messageBTN{
+    padding: 10px 20px;
+    background: #79c6c0; /* Couleur primaire */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+    margin-right: 10px;
+    margin-top: 15px;
 }
 
 ul {
@@ -176,4 +187,19 @@ li {
 .footer-bottom {
     margin-top: 20px;
     font-size: 14px;
+}
+#scrollerDedans {
+    height: 550px; /* Adjust the height as needed */
+    overflow-y: scroll;
+    border: 1px solid #79c6c0; /* Optional: Add a border for better visibility */
+    padding: 10px; /* Optional: Add some padding for inner content */
+    border-radius: 5px;
+    width :80%;    
+}
+.tag{
+    background-color: #f18700;
+    color: #f4f4f4;
+    max-width: 100px;
+    border-radius: 50px;
+    /* list-style: url(""); */
 }
