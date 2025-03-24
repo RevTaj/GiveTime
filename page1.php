@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/styles.css">
-    <title>GiveTime - Page Bénévole</title>
+    <link rel="stylesheet" href="../css/style-page-association.css">
+    <title>Document</title>
 
     <?php
     date_default_timezone_set('UTC');
@@ -13,24 +13,25 @@
         header('Location: ../Connexion/Erreur.php');
         
     }
-    
-            include ('../include/header.php');
-        ?>
+    ?>
 </head>
 <body>
-<?php 
-include("Accueil.php");
-?>
+<header>
+
+    <h1>Inscription ou désinscription d'une mission</h1>
+    
+</header>
+
 <div class="container">
+        <div class="header">
+            <a href="../Connexion/deconnexion.php" class="logout">Se déconnecter</a>
+        </div>
+
+
 
         <div class="content">
             <div class="left-section">
                 <h1>S'inscrire à une mission :</h1>
-
-                <div id="scrollerDedans">
-                    
-                                  
-                    <form method="post" action="">
 
                 <div id="scrollerDedans">
                     
@@ -41,15 +42,12 @@ include("Accueil.php");
                         $filmsStatement = $db->prepare("SELECT * FROM gt_Posts 
                                                         JOIN gt_association
                                                         ON gt_Posts.association_id = gt_association.id_association ");
-                        $filmsStatement = $db->prepare("SELECT * FROM gt_Posts 
-                                                        JOIN gt_association
-                                                        ON gt_Posts.association_id = gt_association.id_association ");
                         $filmsStatement->execute();
                         $films = $filmsStatement->fetchAll();
                         foreach ($films as $film) { 
                         
-                        
                         ?>
+                            
                             <form method="post" action="">
                                 <h2> <?= htmlspecialchars($film['TitrePosts']) ?></h2> <b> <?= htmlspecialchars($film['nomAssociation']) ?> </b>
                                 <img src="" alt="">
@@ -61,7 +59,6 @@ include("Accueil.php");
                             </form>
 
 
-
                         <?php
                         }
                         ?>
@@ -71,14 +68,7 @@ include("Accueil.php");
 
 
 
-</div>
-
-
-
                 <?php
-                if (isset($_POST['INSCRIPTION'])) {
-
-                    // $Posts_id = $_POST['INSCRIPTION'];
                 if (isset($_POST['INSCRIPTION'])) {
 
                     // $Posts_id = $_POST['INSCRIPTION'];
@@ -88,15 +78,11 @@ include("Accueil.php");
                     // echo $_POST['INSCRIPTION'];
                     
 
-                    // echo $_POST['INSCRIPTION'];
-                    
-
                     if ($action == "s'inscrire ! ") {
                         // Vérification si l'utilisateur est déjà inscrit ou non
                         $sqlCheckQuery = "SELECT COUNT(*) FROM gt_Inscription WHERE Posts_id = :Posts_id AND benevole_id = :benevole_id";
                         $checkInscription = $db->prepare($sqlCheckQuery);
                         $checkInscription->execute(array(
-                            'Posts_id' => $_POST['INSCRIPTION'],
                             'Posts_id' => $_POST['INSCRIPTION'],
                             'benevole_id' => $benevole_id
                         ));
@@ -168,10 +154,6 @@ include("Accueil.php");
 
                     
                     
-
-
-                    
-                    
                 ?>
 
             </div>
@@ -179,7 +161,6 @@ include("Accueil.php");
             <div class="right-section">
 
                 <h1>Les Missions suivies :</h1>
-                
                 
                 <?php 
                         $id_benevole = $_SESSION['Identifiant'];
@@ -203,31 +184,6 @@ include("Accueil.php");
                             </form></div>";
                         }
                         ?>
-                        $id_benevole = $_SESSION['Identifiant'];
-                        $Postsuivie = $db->prepare("SELECT * FROM gt_Inscription 
-                                                    JOIN gt_Posts 
-                                                    ON gt_Inscription.Posts_id=gt_Posts.id_Posts 
-                                                    JOIN gt_Association
-                                                    ON gt_Posts.association_id = gt_association.id_association 
-                                                    WHERE benevole_id=$id_benevole");
-                        $Postsuivie->execute();
-                        $Posts = $Postsuivie->fetchAll();
-                        
-                        foreach ($Posts as $lesPostssuivies) {
-                            echo "<div class='MissionSuivie'> <ul><li>".$lesPostssuivies['TitrePosts']." - <b>".$lesPostssuivies['nomAssociation']."</b></li></ul>
-                            <form action='../Messagerie/MessagerieBenevole.php' method='Post'>
-                            <button type='submit' name='idMessageForm' value=".$lesPostssuivies['id_Posts']. " class='messageBTN'> Regarder mes messages</button>
-                            </form>
-                            <form method='post' action=''>
-                            <input type='hidden' name='DELETE' value='".$lesPostssuivies["id_Posts"]."'>
-                            <input type='submit' name='submit' value='se désinscrire' class='delete'>
-                            </form></div>";
-                        }
-                        ?>
-            </div>
-
-
-
             </div>
 
 
@@ -236,9 +192,5 @@ include("Accueil.php");
         </div>
 
     </div>
-    
-    <?php
-        include ('../include/footer.php');
-    ?>
 </body>
 </html>

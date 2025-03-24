@@ -6,14 +6,7 @@
   <link rel="stylesheet" href="../css/style-form.css">
 </head>
 <body>
-<header>
-        <nav>
-            <a href="../index.html">Accueil</a>
-            <a href="../index.html">Se connecter</a>
-            <a href="../Inscription/Inscription.html">S'inscrire</a>
-        </nav>
-    </header>
-  <a href="../index.html" class="back-button">Retour</a>
+  <a href="../index.php" class="back-button">Retour</a>
   <h1>Page de Connexion - Association</h1>
   <div class="container">
     <fieldset>
