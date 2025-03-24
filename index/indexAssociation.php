@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="../css/style-form.css">
 </head>
 <body>
-  <a href="../index.html" class="back-button">Retour</a>
+  <a href="../index.php" class="back-button">Retour</a>
   <h1>Page de Connexion - Association</h1>
   <div class="container">
     <fieldset>

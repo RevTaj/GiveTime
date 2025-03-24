@@ -13,14 +13,12 @@
         header('Location: ../Connexion/Erreur.php');
         
     }
-    ?>
+    
+            include ('../include/header.php');
+        ?>
 </head>
 <body>
-<header>
-
-    <h1>Inscription ou désinscription d'une mission</h1>
     
-</header>
 
 <div class="container">
         <div class="header">
@@ -119,7 +117,7 @@
 
                             // On vérifie si on est inscrit ---> COUNT
                             $sqlCheckQuery = "SELECT COUNT(*) FROM gt_Inscription WHERE Posts_id = :Posts_id AND benevole_id = :benevole_id"; //COUNT renvoie le nombre de lignes qui répondent aux critères spécifiés dans WHERE
-                            echo "Requête SQL : " . $sqlCheckQuery;
+                            // echo "Requête SQL : " . $sqlCheckQuery;
                             $checkInscription = $db->prepare($sqlCheckQuery);
                             $checkInscription->execute(array(
                                 
@@ -137,7 +135,7 @@
                                 }
                                 else {
                                     $sqlDeleteQuery = "DELETE FROM gt_Inscription WHERE Posts_id = :Posts_id AND benevole_id = :benevole_id";
-                                    echo "Requête SQL : " . $sqlDeleteQuery;
+                                    // echo "Requête SQL : " . $sqlDeleteQuery;
                                     $deleteInscription = $db->prepare($sqlDeleteQuery);
                                     $deleteInscription->execute(array(
 
@@ -192,5 +190,9 @@
         </div>
 
     </div>
+    
+    <?php
+        include ('../include/footer.php');
+    ?>
 </body>
 </html>

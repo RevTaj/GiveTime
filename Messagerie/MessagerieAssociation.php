@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/style-messagerie.css">
+    <link rel="stylesheet" href="../css/styleNotif.css">
     <title>Document</title>
 </head>
 <body>
@@ -32,15 +32,19 @@ if ($idMessageForm) {
     $filmsStatement->execute(['idMessageForm' => $idMessageForm]);
     $films = $filmsStatement->fetchAll();
 
+?>
+ <div id="Messagerie">
+    <?php
     // Afficher les messages récupérés
     foreach ($films as $messages) {
         echo "<p class='".$messages['notification']."'>".$messages['contenu']."</p>";
     }
 }
 ?>
+</div>
 
 <!-- Formulaire d'envoi de message -->
-<form action="" method="POST">
+<form action="" method="POST" id="ChatInput">
     <label for="texte">Entrez un texte :</label>
     <input type="text" id="texte" name="texte" required>
     <input type="hidden" name="idMissionForm" value="<?php echo htmlspecialchars($idMessageForm); ?>">
@@ -89,8 +93,12 @@ if (isset($_POST['texte']) && !empty($_POST['texte'])) {
     header("Location: " . $_SERVER['PHP_SELF']); // Recharge la page
     exit; // Arrête l'exécution du script
 }
-?>
 
+
+
+include ('../include/footer.php');
+
+?>
 
 </body>
 </html>

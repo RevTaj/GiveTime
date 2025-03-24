@@ -11,7 +11,7 @@
     <div class="error-container">
         <div class="icon">⚠️</div>
         <div class="error-message">Vous ne pouvez accéder à cette page</div>
-        <a href="index.html"class="btn">Revenir à l'acceuil</a>
+        <a href="index.php"class="btn">Revenir à l'acceuil</a>
     </div>
     </div>
 

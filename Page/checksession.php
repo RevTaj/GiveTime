@@ -8,7 +8,7 @@ if(!isset($_SESSION['authentification']) || $_SESSION['authentification'] !== tr
     $message = "Vous devez être connecté pour accéder à cette page.";
     
     // On définit l'URL de redirection vers la page d'accueil
-    $redirect = "../index.html";
+    $redirect = "../index.php";
     
     // Création du script JavaScript pour afficher le message et rediriger
     echo "<script>
