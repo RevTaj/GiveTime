@@ -241,16 +241,33 @@ input[type="submit"], input[type="reset"], button {
 input[type="submit"]:hover, input[type="reset"]:hover, button:hover {
     transform: scale(1.05);
 }
-.voir-tous-btn {
-    padding: 10px 20px;
-    background-color: #f18700;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
+.results-wrapper {
+    width: 90%;
+    max-width: 800px;
+    margin: 20px auto;
 }
 
-.voir-tous-btn:hover {
-    background-color: #79c6c0;
+.results-wrapper.scrollable {
+    max-height: 600px; /* Hauteur pour environ 5 cartes */
+    overflow-y: auto;
+    padding-right: 15px;
+}
+
+/* Style de la barre de défilement */
+.results-wrapper.scrollable::-webkit-scrollbar {
+    width: 8px;
+}
+
+.results-wrapper.scrollable::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.results-wrapper.scrollable::-webkit-scrollbar-thumb {
+    background: #f18700;
+    border-radius: 4px;
+}
+
+.results-wrapper.scrollable::-webkit-scrollbar-thumb:hover {
+    background: #79c6c0;
 }

@@ -126,19 +126,15 @@ try {
 
 <script>
     // Fonction pour géocoder l'adresse
-    
     async function geocodeAddress(address) {
         try {
             // Utilisation de l'API Nominatim d'OpenStreetMap pour le géocodage
-            var loca = encodeURIComponent(address);
-            const response = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=loca`);
+            const response = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`);
             const data = await response.json();
-            console.log(data);
-            console.log(loca)
+            
             if (data && data.length > 0) {
-
+                // Retourner les coordonnées trouvées
                 return [data[0].lat, data[0].lon];
-                
             } else {
                 // Si rien n'est trouvé, retourner les coordonnées par défaut (Paris)
                 console.log("Adresse non trouvée, utilisation des coordonnées par défaut");

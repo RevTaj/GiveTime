@@ -106,13 +106,10 @@ if (!empty($_GET['query'])) {
     </div>
 
     <!-- Résultats de la recherche -->
-    <div class="results-wrapper">
-        <div id="resultsContainer" class="results">
+    <div class="results-wrapper <?php echo count($results) > 5 ? 'scrollable' : ''; ?>">
+    <div id="resultsContainer" class="results">
         <?php if ($searchPerformed && !empty($results)): ?>
-            <?php 
-            $displayedResults = array_slice($results, 0, 3);
-            foreach ($displayedResults as $user): 
-            ?>
+            <?php foreach ($results as $user): ?>
                 <div class="user-card <?= htmlspecialchars($user['type']) ?>">
                     <strong><?= htmlspecialchars($user['nom']) ?> <?= htmlspecialchars($user['prenom']) ?></strong><br>
                     <small><?= $user['type'] == 'association' ? "Association" : "Bénévole" ?></small><br>
@@ -127,19 +124,10 @@ if (!empty($_GET['query'])) {
                     </div>
                 </div>
             <?php endforeach; ?>
-
-            <?php if (count($results) > 5): ?>
-                <div class="voir-plus-container" style="text-align: center; margin-top: 20px;">
-                    <a href="AccueilRecherche.php?query=<?= urlencode($_GET['query']) ?><?= isset($_GET['type']) ? '&type=' . urlencode($_GET['type']) : '' ?>">
-                        <button type="button" class="voir-tous-btn">Voir tous les profils</button>
-                    </a>
-                </div>
-            <?php endif; ?>
-
         <?php elseif ($searchPerformed): ?>
             <p>Aucun résultat trouvé pour votre recherche.</p>
         <?php endif; ?>
-        </div>
+    </div>
     </div>
 
     <script>
