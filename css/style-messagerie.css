@@ -8,7 +8,23 @@ body {
     flex-direction: column;
     height: 100vh;
 }
+/* Si jamais tu rajoute la navbar : */
 
+
+header {
+    background-color: #f18700; /* Couleur primaire */
+    padding: 10px 20px; /* Ajout de padding horizontal */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+header nav {
+    display: flex;
+    gap: 20px;
+    justify-content: flex-end; /* Aligne les éléments à droite */
+    margin-right: 30px; /* Ajoute de l'espace à droite */
+    margin-left: 0; /* Supprime le margin-left existant */
+}
+/*////////////////////////////////*/
 /* Conteneur principal */
 .messaging-container {
     display: flex;

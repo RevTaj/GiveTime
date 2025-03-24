@@ -81,8 +81,8 @@ if (!empty($_GET['query'])) {
 <body>
     <header>
         <nav>
-            <a href="Accueil.php">Accueil</a>
-            <a href="profil-Benevole.php">Profil</a>
+            <a href="page1.php">Accueil</a>
+            <a href="profil-user.php">Profil</a>
             <a href="../Connexion/deconnexion.php">Déconnexion</a>
         </nav>
     </header>

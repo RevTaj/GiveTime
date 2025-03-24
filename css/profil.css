@@ -14,15 +14,17 @@ body {
 
 /* En-tête */
 header {
-    background-color: #f18700; /* Couleur primaire du site */
-    padding: 10px 0;
+    background-color: #f18700; /* Couleur primaire */
+    padding: 10px 20px; /* Ajout de padding horizontal */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-nav {
+header nav {
     display: flex;
     gap: 20px;
-    margin-left: 75%;
+    justify-content: flex-end; /* Aligne les éléments à droite */
+    margin-right: 30px; /* Ajoute de l'espace à droite */
+    margin-left: 0; /* Supprime le margin-left existant */
 }
 
 nav a {

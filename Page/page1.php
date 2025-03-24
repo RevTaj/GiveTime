@@ -5,6 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/styles.css">
     <title>GiveTime - Page Bénévole</title>
+    
+    <style>
+        .notification {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background-color: #79c6c0;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            z-index: 1000;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: opacity 0.3s, transform 0.3s;
+        }
+        
+        .notification.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
 
     <?php
     date_default_timezone_set('UTC');
@@ -83,7 +105,7 @@ include("Accueil.php");
                     }
 
                     if ($count > 0) {
-                        echo "Vous êtes déjà inscrit à ce Posts.";
+                        $_SESSION['notification'] = "Vous êtes déjà inscrit à ce Posts.";
                     } else {
                         $sqlInsertQuery = "INSERT INTO gt_Inscription(Posts_id, benevole_id, date_debut, progression, date_fin) VALUES (:Posts_id, :benevole_id, :date_debut, :progression, :date_fin)";
                         $insererFilm = $db->prepare($sqlInsertQuery);
@@ -94,7 +116,7 @@ include("Accueil.php");
                             'progression' => 0,
                             'date_fin' => date("Y-m-d")
                         ));
-                        echo "Vous êtes maintenant inscrit au Posts !";
+                        $_SESSION['notification'] = "Vous êtes maintenant inscrit au Posts !";
                     }
                 }
 
@@ -110,7 +132,6 @@ include("Accueil.php");
 
                             // On vérifie si on est inscrit ---> COUNT
                             $sqlCheckQuery = "SELECT COUNT(*) FROM gt_Inscription WHERE Posts_id = :Posts_id AND benevole_id = :benevole_id"; //COUNT renvoie le nombre de lignes qui répondent aux critères spécifiés dans WHERE
-                            echo "Requête SQL : " . $sqlCheckQuery;
                             $checkInscription = $db->prepare($sqlCheckQuery);
                             $checkInscription->execute(array(
                                 
@@ -124,11 +145,10 @@ include("Accueil.php");
                             
                                     
                                 if ($count == 0) {
-                                echo "Vous n'êtes pas inscrit à ce Posts.";
+                                $_SESSION['notification'] = "Vous n'êtes pas inscrit à ce Posts.";
                                 }
                                 else {
                                     $sqlDeleteQuery = "DELETE FROM gt_Inscription WHERE Posts_id = :Posts_id AND benevole_id = :benevole_id";
-                                    echo "Requête SQL : " . $sqlDeleteQuery;
                                     $deleteInscription = $db->prepare($sqlDeleteQuery);
                                     $deleteInscription->execute(array(
 
@@ -136,7 +156,7 @@ include("Accueil.php");
                                         'benevole_id' => $benevole_id
                                     ));
                                 
-                        echo "Vous êtes maintenant désinscrit du Posts.";
+                        $_SESSION['notification'] = "Vous êtes maintenant désinscrit du Posts.";
     
                         }
                     }
@@ -184,6 +204,26 @@ include("Accueil.php");
     </div>
     <?php 
     include("../include/footer.php");
-?>
+    ?>
+    
+    <div id="notification" class="notification"></div>
+    
+    <script>
+        function showNotification(message, duration = 4000) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, duration);
+        }
+        
+        // Afficher les notifications au chargement de la page si nécessaires
+        <?php if(isset($_SESSION['notification'])) : ?>
+            showNotification("<?= $_SESSION['notification'] ?>");
+            <?php unset($_SESSION['notification']); ?>
+        <?php endif; ?>
+    </script>
 </body>
 </html>

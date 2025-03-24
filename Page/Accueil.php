@@ -79,13 +79,9 @@ if (!empty($_GET['query'])) {
     <title>Recherche Utilisateur / Association</title>
 </head>
 <body>
-    <header>
-        <nav>
-            <a href="Accueil.php">Accueil</a>
-            <a href="profil-Benevole.php">Profil</a>
-            <a href="../Connexion/deconnexion.php">Déconnexion</a>
-        </nav>
-    </header>
+<?php 
+include("../include/header.php");
+?>
     
     <h1>GiveTime</h1>
 
