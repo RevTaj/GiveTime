@@ -1,62 +1,170 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GiveTime - Connexion</title>
+    <title>GiveTime - Plateforme de bénévolat</title>
+    <link rel="shortcut icon" href="images/logo-fav/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Header -->
     <header>
-        <nav>
-            <a href="index.html">Accueil</a>
-            <a href="index.html">Se connecter</a>
-            <a href="Inscription/Inscription.html">S'inscrire</a>
-        </nav>
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <img src="images/logo-fav/Logo.png" alt="GiveTime Logo">
+            </a>
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-link">Accueil</a>
+                <a href="#how-it-works" class="nav-link">Comment ça marche</a>
+                <a href="Page-supp/about.html" class="nav-link">À propos</a>
+                <a href="Inscription/Inscription.html" class="nav-button">S'inscrire</a>
+            </nav>
+        </div>
     </header>
-<div class="hero-section">
-    <h1>GiveTime</h1>
-    <h2>Plateforme de mise en relation entre bénévoles et associations</h2>
-    
-    <div class="separator">Se connecter en tant que</div>
-        
-    <div class="container">
-        <a href="index/index.php" class="btn-main">Benevole</a>
-        <a href="index/indexAssociation.php" class="btn-main">Association</a>
-        <a href="index/indexadmin.php" class="btn-main">Admin</a>
-    </div>
-            
-    <div class="separator">Pas encore inscrit ?</div>
-        
-    <div class="button-container">
-        <a href="Inscription/Inscription.html" class="btn-secondary">Créer un compte</a>
-    </div>
-</div>
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-left">
-                <h3>GiveTime</h3>
-                <p>GiveTime est une plateforme dédiée à la mise en relation des bénévoles et des associations.</p>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h1 class="hero-title">Donnez du temps, changez des vies</h1>
+            <h2 class="hero-subtitle">GiveTime connecte les bénévoles et les associations pour créer un impact social positif</h2>
+            <div class="hero-buttons">
+                <a href="#login-options" class="btn btn-primary">Se connecter</a>
+                <a href="Inscription/Inscription.html" class="btn btn-secondary">Créer un compte</a>
             </div>
-            <div class="footer-center">
-                <h4>Contact</h4>
-                <p>Email: contact@givetime.org</p>
-                <p>Téléphone: +33 1 23 45 67 89</p>
-                <p>Adresse: 123 Rue de la Solidarité, 75000 Paris, France</p>
-            </div>
-            <div class="footer-right">
-                <h4>Suivez-nous</h4>
-                <div class="social-links">
-                    <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/2023_Facebook_icon.svg/768px-2023_Facebook_icon.svg.png" alt="Facebook"></a>
-                    <a href="#"><img src="https://img.freepik.com/vecteurs-libre/nouvelle-conception-icone-x-du-logo-twitter-2023_1017-45418.jpg" alt="Twitter"></a>
-                    <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/768px-Instagram_icon.png" alt="Instagram"></a>
+        </div>
+    </section>
+
+    <!-- How it works Section -->
+    <section id="how-it-works" class="section how-it-works">
+        <div class="container">
+            <h2 class="section-title">Comment ça marche</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                    <h3 class="step-title">Inscription</h3>
+                    <p>Créez votre profil en tant que bénévole ou association et rejoignez notre communauté engagée.</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3 class="step-title">Recherche</h3>
+                    <p>Trouvez des missions qui correspondent à vos compétences ou des bénévoles pour vos projets.</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3 class="step-title">Connexion</h3>
+                    <p>Entrez en contact, organisez votre collaboration et commencez à faire la différence ensemble.</p>
                 </div>
             </div>
         </div>
-        <div class="footer-bottom">
+    </section>
+
+    <!-- Stats Section -->
+    <section class="section stats">
+        <div class="container">
+            <div class="stats-container">
+                <div class="stat-item">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Associations</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">3,200+</div>
+                    <div class="stat-label">Bénévoles actifs</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">8,700+</div>
+                    <div class="stat-label">Missions accomplies</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">12,500+</div>
+                    <div class="stat-label">Heures données</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Login Options Section -->
+    <section id="login-options" class="section login-options">
+        <div class="container">
+            <h2 class="section-title">Se connecter</h2>
+            <div class="user-types">
+                <div class="user-card">
+                    <div class="user-icon">
+                        <i class="fas fa-user-heart"></i>
+                    </div>
+                    <h3 class="user-card-title">Bénévole</h3>
+                    <p class="user-card-description">Accédez à votre espace bénévole pour trouver des missions et gérer vos engagements.</p>
+                    <a href="index/index.php" class="btn btn-primary">Connexion Bénévole</a>
+                </div>
+                <div class="user-card association">
+                    <div class="user-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3 class="user-card-title">Association</h3>
+                    <p class="user-card-description">Gérez vos projets, trouvez des bénévoles et suivez l'avancement de vos missions.</p>
+                    <a href="index/indexAssociation.php" class="btn btn-association">Connexion Association</a>
+                </div>
+                <div class="user-card admin">
+                    <div class="user-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="user-card-title">Administrateur</h3>
+                    <p class="user-card-description">Accédez au panneau d'administration pour gérer la plateforme.</p>
+                    <a href="index/indexadmin.php" class="btn btn-admin">Connexion Admin</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section cta">
+        <div class="container">
+            <h2 class="cta-title">Rejoignez notre communauté aujourd'hui</h2>
+            <p class="cta-subtitle">Ensemble, nous pouvons créer un impact social positif. Que vous soyez bénévole ou association, GiveTime est la plateforme qu'il vous faut.</p>
+            <a href="Inscription/Inscription.html" class="btn btn-primary">S'inscrire maintenant</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-column">
+                <h3 class="footer-title">GiveTime</h3>
+                <p>Une plateforme dédiée à la mise en relation des bénévoles et des associations pour créer un impact social positif.</p>
+                <div class="social-links">
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3 class="footer-title">Liens utiles</h3>
+                <ul class="footer-links">
+                    <li><a href="Page-supp/about.html" class="footer-link">À propos de nous</a></li>
+                    <li><a href="#" class="footer-link">Comment ça marche</a></li>
+                    <li><a href="Page-supp/FAQ.html" class="footer-link">Témoignages</a></li>
+                    <li><a href="Page-supp/FAQ.html" class="footer-link">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3 class="footer-title">Contact</h3>
+                <p><i class="fas fa-envelope"></i> contact@givetime.org</p>
+                <p><i class="fas fa-phone"></i> +33 1 23 45 67 89</p>
+                <p><i class="fas fa-map-marker-alt"></i> 123 Rue de la Solidarité, 75000 Paris</p>
+            </div>
+        </div>
+        <div class="footer-bottom container">
             <p>&copy; 2025 GiveTime. Tous droits réservés.</p>
         </div>
     </footer>
-    
 </body>
 </html>

@@ -69,36 +69,25 @@ if (!empty($_GET['query'])) {
     $results = !empty($filtered_results) ? $filtered_results : $results;
 }
 ?>
-
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/styles.css">
-    <title>Recherche Utilisateur / Association</title>
-</head>
-<body>
-<?php 
-include("../include/header.php");
-?>
-    
+ 
     <h1>GiveTime</h1>
 
-    <!-- Barre de recherche -->
-    <div class="search-container">
-        <form method="GET" action="">
-            <input type="text" id="searchInput" name="query" placeholder="Rechercher par nom, prénom ou tag..." 
-                   value="<?= isset($_GET['query']) ? htmlspecialchars($_GET['query']) : '' ?>">
-            <button type="submit">Rechercher</button>
-        </form>
-    </div>
-
-    <!-- Boutons de filtre -->
+    <!-- Boutons de filtre au-dessus de la barre de recherche -->
     <div class="filter-buttons">
         <button class="filter-btn" value="all">Tout afficher</button>
         <button class="filter-btn" value="benevole">Bénévole</button>
         <button class="filter-btn" value="association">Association</button>
+    </div>
+
+    <!-- Barre de recherche avec bouton à droite -->
+    <div class="search-container">
+        <form method="GET" action="" class="search-form">
+            <div class="search-input-group">
+                <input type="text" id="searchInput" name="query" placeholder="Rechercher par nom, prénom ou tag..." 
+                       value="<?= isset($_GET['query']) ? htmlspecialchars($_GET['query']) : '' ?>">
+                <button type="submit" class="search-button">Rechercher</button>
+            </div>
+        </form>
     </div>
 
     <!-- Résultats de la recherche -->
@@ -166,9 +155,12 @@ include("../include/header.php");
                     card.style.display = "none";
                 }
             });
+            
+            // Mettre en surbrillance le bouton de filtre sélectionné
+            document.querySelector(`.filter-btn[value="${selectedType}"]`).classList.add('active');
+        } else {
+            // Si aucun filtre ou "tous", mettre en surbrillance le bouton "Tout afficher"
+            document.querySelector('.filter-btn[value="all"]').classList.add('active');
         }
     });
     </script>
-
-</body>
-</html>

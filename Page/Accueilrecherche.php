@@ -75,12 +75,13 @@ if (!empty($_GET['query'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../images/logo-fav/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="../css/styles.css">
     <title>Recherche Utilisateur / Association</title>
 </head>
 <body>
 <?php 
-include("../include/header.php");
+include("../include/header.php"); 
 ?>
     
     <h1>GiveTime</h1>
@@ -136,7 +137,7 @@ include("../include/header.php");
                 const url = new URL(window.location.href);
                 url.searchParams.set("type", type);
 
-                // Supprimer le paramètre si "all" est sélectionné
+                // Supprimer le paramètre si "all" est sélectionné, permet de réinitialiser retirer les cartes
                 if (type === "all") {
                     url.searchParams.delete("type");
                 }
@@ -157,5 +158,9 @@ include("../include/header.php");
         }
     });
     </script>
+    <?php 
+include("../include/footer.php"); 
+?>
+    
 </body>
 </html>

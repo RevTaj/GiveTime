@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ & Témoignages - GiveTime</title>
+    <link rel="shortcut icon" href="../images/logo-fav/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/faq-style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="../index.html" class="logo">
+                <img src="../images/logo-fav/Logo.png" alt="GiveTime Logo">
+            </a>
+            <nav class="nav-menu">
+                <a href="../index.html" class="nav-link">Accueil</a>
+                <a href="how-it-works.html" class="nav-link">Comment ça marche</a>
+                <a href="about.html" class="nav-link">À propos</a>
+                <a href="../Inscription/Inscription.html" class="nav-button">S'inscrire</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero faq-hero">
+        <div class="container hero-content">
+            <h1 class="hero-title">Questions fréquentes & Témoignages</h1>
+            <h2 class="hero-subtitle">Découvrez les expériences de nos utilisateurs et trouvez les réponses à vos questions</h2>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section testimonials">
+        <div class="container">
+            <h2 class="section-title">Ils témoignent</h2>
+            <p class="section-subtitle">Découvrez les expériences vécues par nos bénévoles et associations</p>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-image">
+                        <img src="../images/testimonials/Testi1.jpg" alt="Photo de Marie Dupont">
+                    </div>
+                    <div class="testimonial-content">
+                        <div class="testimonial-quote">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <p>Grâce à GiveTime, j'ai pu trouver une mission dans une association de protection animale. L'interface est intuitive et tout s'est fait rapidement. Je suis désormais bénévole régulière et c'est une expérience très enrichissante.</p>
+                        <div class="testimonial-author">
+                            <h4>Marie Dupont</h4>
+                            <span>Bénévole depuis 6 mois</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-image">
+                        <img src="../images/testimonials/Testi2.jpg" alt="Photo de Thomas Martin">
+                    </div>
+                    <div class="testimonial-content">
+                        <div class="testimonial-quote">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <p>En tant que responsable d'une petite association, trouver des bénévoles était un défi constant. GiveTime nous a permis de recruter des personnes motivées et compétentes, ce qui nous a aidé à développer nos projets.</p>
+                        <div class="testimonial-author">
+                            <h4>Thomas Martin</h4>
+                            <span>Association "Les Mains Tendues"</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-image">
+                        <img src="../images/testimonials/testi3.jpeg" alt="Photo de Sophie Girard">
+                    </div>
+                    <div class="testimonial-content">
+                        <div class="testimonial-quote">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <p>Je cherchais un moyen de mettre mes compétences en design au service de causes qui me tiennent à cœur. J'ai réalisé plusieurs missions ponctuelles pour différentes associations, et le système de suivi est vraiment pratique.</p>
+                        <div class="testimonial-author">
+                            <h4>Sophie Girard</h4>
+                            <span>Bénévole depuis 1 an</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-image">
+                        <img src="../images/testimonials/testi4.jpeg" alt="Photo de Lucas Petit">
+                    </div>
+                    <div class="testimonial-content">
+                        <div class="testimonial-quote">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <p>Notre festival associatif a pu voir le jour grâce aux nombreux bénévoles recrutés via GiveTime. La plateforme nous a permis de gérer facilement les plannings et les équipes. Une vraie réussite !</p>
+                        <div class="testimonial-author">
+                            <h4>Lucas Petit</h4>
+                            <span>Association "Cultures Urbaines"</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section faq light-section">
+        <div class="container">
+            <h2 class="section-title">Foire aux questions</h2>
+            <p class="section-subtitle">Vous avez des questions ? Nous avons les réponses.</p>
+            
+            <div class="faq-categories">
+                <button class="category-btn active" data-category="general">Général</button>
+                <button class="category-btn" data-category="benevoles">Pour les bénévoles</button>
+                <button class="category-btn" data-category="associations">Pour les associations</button>
+                <button class="category-btn" data-category="technique">Questions techniques</button>
+            </div>
+            
+            <div class="faq-list" id="general">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Qu'est-ce que GiveTime ?</h3>
+                        <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>GiveTime est une plateforme qui met en relation des bénévoles avec des associations ayant besoin d'aide. Notre mission est de faciliter l'engagement citoyen en permettant à chacun de trouver facilement des opportunités de bénévolat qui correspondent à ses compétences et à ses disponibilités.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>L'utilisation de GiveTime est-elle payante ?</h3>
+                        <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Non, GiveTime est complètement gratuit pour les bénévoles. Pour les associations, nous proposons une version gratuite avec les fonctionnalités essentielles et des options premium pour les structures ayant des besoins plus spécifiques.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Comment s'inscrire sur GiveTime ?</h3>
+                        <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>L'inscription est simple. Cliquez sur le bouton "S'inscrire" en haut de la page, choisissez votre profil (bénévole ou association), puis suivez les instructions pour créer votre compte. Une fois inscrit, vous pourrez compléter votre profil et commencer à utiliser la plateforme.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="faq-list hidden" id="benevoles">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Puis-je annuler ma participation à une mission ?</h3>
+                        <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Oui, mais nous vous encourageons à le faire le plus tôt possible pour permettre à l'association de trouver un remplaçant. Des annulations répétées peu de temps avant une mission peuvent affecter votre profil de fiabilité visible par les associations.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Comment sont comptabilisées mes heures de bénévolat ?</h3>
+                        <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Lorsque vous participez à une mission, l'association valide votre présence et le nombre d'heures effectuées. Ces heures sont automatiquement ajoutées à votre compteur personnel, visible sur votre profil. Vous pouvez également obtenir une attestation de bénévolat à la demande.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Puis-je être bénévole si j'ai peu de temps disponible ?</h3>
+                        <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolument ! GiveTime propose des missions ponctuelles qui peuvent durer quelques heures seulement. Vous pouvez filtrer les missions par durée et choisir celles qui correspondent à vos disponibilités, même si elles sont limitées.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="faq-list hidden" id="associations">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Comment publier une annonce pour trouver des bénévoles ?</h3>
+                        <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Une fois votre compte association créé et vérifié, rendez-vous dans votre tableau de bord et cliquez sur "Publier une mission". Remplissez le formulaire en détaillant vos besoins, compétences requises, durée et lieu de la mission. Plus votre description est précise, plus vous attirerez des bénévoles correspondant à vos attentes.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Comment gérer les candidatures de bénévoles ?</h3>
+                        <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Toutes les candidatures sont visibles dans votre espace association. Vous pouvez consulter le profil de chaque bénévole, ses compétences et son historique d'engagement. Vous pouvez accepter ou refuser les candidatures, et communiquer directement avec les bénévoles via notre messagerie intégrée.</p>
+                    </div>
+                </div>
+                                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Peut-on rechercher des bénévoles avec des compétences spécifiques ?</h3>
+                        <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Oui, notre moteur de recherche avancé vous permet de filtrer les bénévoles par compétences, disponibilités et localisation. De plus, lorsque vous créez une mission, vous pouvez spécifier les compétences requises, ce qui attire automatiquement des profils correspondants.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="faq-list hidden" id="technique">                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>La plateforme est-elle accessible sur mobile ?</h3>
+                        <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Oui, GiveTime est entièrement responsive et s'adapte à tous les appareils : ordinateurs, tablettes et smartphones. Vous pouvez accéder à toutes les fonctionnalités depuis votre navigateur mobile. Nous travaillons également sur une application mobile qui sera disponible prochainement.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Comment supprimer mon compte ?</h3>
+                        <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Si vous souhaitez supprimer votre compte, accédez à vos paramètres depuis votre profil, puis sélectionnez "Supprimer mon compte". Vous devrez confirmer votre décision. Notez que cette action est irréversible et que toutes vos données seront définitivement effacées conformément à notre politique de confidentialité.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Les données personnelles sont-elles protégées ?</h3>
+                        <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Oui, nous prenons la protection de vos données très au sérieux. GiveTime est conforme au RGPD et nous n'utilisons vos informations que dans le cadre du fonctionnement de la plateforme. Vous pouvez consulter notre politique de confidentialité complète pour plus de détails sur la manière dont nous traitons vos données.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section class="section cta">
+        <div class="container">
+            <h2 class="cta-title">Vous avez d'autres questions ?</h2>
+            <p class="cta-subtitle">Notre équipe est là pour vous aider à trouver les réponses dont vous avez besoin.</p>
+            <a href="#" class="btn btn-primary">Contactez-nous</a>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-column">
+                <h3 class="footer-title">GiveTime</h3>
+                <p>Une plateforme dédiée à la mise en relation des bénévoles et des associations pour créer un impact social positif.</p>
+                <div class="social-links">
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3 class="footer-title">Liens utiles</h3>
+                <ul class="footer-links">
+                    <li><a href="about.html" class="footer-link">À propos de nous</a></li>
+                    <li><a href="how-it-works.html" class="footer-link">Comment ça marche</a></li>
+                    <li><a href="faq.html" class="footer-link">Témoignages & FAQ</a></li>
+                    <li><a href="#" class="footer-link">Mentions légales</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3 class="footer-title">Contact</h3>
+                <p><i class="fas fa-envelope"></i> contact@givetime.org</p>
+                <p><i class="fas fa-phone"></i> +33 1 23 45 67 89</p>
+                <p><i class="fas fa-map-marker-alt"></i> 123 Rue de la Solidarité, 75000 Paris</p>
+            </div>
+        </div>
+        <div class="footer-bottom container">
+            <p>&copy; 2025 GiveTime. Tous droits réservés.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Script pour la FAQ interactive
+        document.addEventListener('DOMContentLoaded', function() {
+            // Accordéon pour les questions-réponses
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                const answer = item.querySelector('.faq-answer');
+                const icon = item.querySelector('.faq-toggle i');
+                
+                question.addEventListener('click', () => {
+                    // Ferme toutes les autres réponses
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item && otherItem.classList.contains('active')) {
+                            otherItem.classList.remove('active');
+                            otherItem.querySelector('.faq-answer').style.maxHeight = '0px';
+                            otherItem.querySelector('.faq-toggle i').className = 'fas fa-chevron-down';
+                        }
+                    });
+                    
+                    // Ouvre/ferme la réponse cliquée
+                    item.classList.toggle('active');
+                    
+                    if (item.classList.contains('active')) {
+                        answer.style.maxHeight = answer.scrollHeight + 'px';
+                        icon.className = 'fas fa-chevron-up';
+                    } else {
+                        answer.style.maxHeight = '0px';
+                        icon.className = 'fas fa-chevron-down';
+                    }
+                });
+            });
+            
+            // Onglets de catégories
+            const categoryBtns = document.querySelectorAll('.category-btn');
+            const faqLists = document.querySelectorAll('.faq-list');
+            
+            categoryBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const category = btn.getAttribute('data-category');
+                    
+                    // Change active button
+                    categoryBtns.forEach(otherBtn => {
+                        otherBtn.classList.remove('active');
+                    });
+                    btn.classList.add('active');
+                    
+                    // Show corresponding FAQ list
+                    faqLists.forEach(list => {
+                        list.classList.add('hidden');
+                        if (list.id === category) {
+                            list.classList.remove('hidden');
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>

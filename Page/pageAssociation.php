@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../images/logo-fav/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="../css/style-page-Association.css">
     <title>Gestion des Missions</title>
 
@@ -159,7 +161,7 @@
                 foreach ($Posts as $lesPostssuivies) {
                     echo "<ul><li>", htmlspecialchars($lesPostssuivies['TitrePosts']), "</li></ul>
                     <form action='../Messagerie/MessagerieAssociation.php' method='Post'>
-                    <button type='submit' name='idMissionForm' value=".$lesPostssuivies['id_Posts']."> Regarder mes messages</button>
+                    <button type='submit' name='idMessageForm' value=\"".$lesPostssuivies['id_Posts']."\"> Regarder mes messages</button>
                     </form> ";
                 }
                 ?>

@@ -1,140 +1,658 @@
-/* Styles généraux */
-html, body {
+/* Variables CSS - Matching styles.css */
+:root {
+    --primary: #f18700;
+    --primary-dark: #d67800;
+    --primary-light: #f9a77b;
+    --secondary: #79c6c0;
+    --secondary-dark: #5eb3ac;
+    --accent: #5d62b5;
+    --text-dark: #333333;
+    --text-medium: #555555;
+    --text-light: #777777;
+    --white: #ffffff;
+    --light-bg: #f8f9fa;
+    --gray-bg: #f4f4f4;
+    --border-light: #e5e5e5;
+    --border-medium: #cccccc;
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 2rem;
+    --spacing-lg: 3rem;
+    --spacing-xl: 5rem;
+    --border-radius: 6px;
+    --border-radius-pill: 50px;
+    --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    --box-shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+    --navbar-height: 70px; /* Added navbar height variable */
+}
+
+/* Reset et base */
+* {
     margin: 0;
     padding: 0;
-    background-color: #f5f1eb;
-    font-family: Arial, sans-serif;
-    color: #333;
+    box-sizing: border-box;
 }
 
-/* En-tête */
-header {
-    text-align: center;
-    margin: 30px auto;
+html, body {
+    font-family: 'Open Sans', Arial, sans-serif;
+    color: var(--text-dark);
+    background-color: var(--gray-bg);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    scroll-padding-top: var(--navbar-height); /* Add scroll padding for anchor links */
 }
 
-h1 {
-    margin: 0;
-    font-size: 2rem;
-    color: #333;
+/* Added content wrapper with padding for navbar */
+.content-wrapper {
+    padding-top: calc(var(--navbar-height) + var(--spacing-md));
+    width: 100%;
+    flex: 1;
 }
 
-/* Paragraphes */
-#Messagerie p {
-    text-align: center;
-    margin: 20px ;
-    max-width: 500px;
-    width: fit-content;
-    padding: 15px;
-    
-    background-color: #e0e9e7;
-    border: 2px solid #eaeaea;
-    border-radius: 25px;
-
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease-in-out;
+h1, h2, h3, h4, h5 {
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-weight: 700;
+    line-height: 1.3;
 }
-
-
-#Messagerie p.notification {
+  /* Header et Navigation */
+  header {
+    background-color: var(--white);
+    padding: var(--spacing-sm) 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  
+  .logo img {
+    height: 50px; /* Ajustez cette valeur selon la taille souhaitée */
+    margin-right: var(--spacing-md); /* Espace entre le logo et la navigation */
+    vertical-align: middle;
+  }
+  
+  /* Modification de la classe header-container pour assurer un bon alignement */
+  .header-container {
+    /* Propriétés existantes conservées */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
     margin: 0 auto;
+    padding: var(--spacing-xs) var(--spacing-md); /* Padding ajusté */
+  }
+  
+  /* Assurez-vous que la navigation reste flexible */
+  .nav-menu {
+    display: flex;
+    gap: var(--spacing-md);
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  /* Ajustement responsif pour mobile - Complète les media queries existantes */
+  @media (max-width: 768px) {
+    header nav {
+      gap: var(--spacing-sm);
+    }
+    
+    .logo img {
+      height: 40px; /* Logo légèrement plus petit sur mobile */
+      margin-right: var(--spacing-sm);
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .header-container {
+      flex-direction: column;
+      gap: var(--spacing-sm);
+      padding: var(--spacing-sm) 0;
+    }
+    
+    .logo {
+      margin-bottom: var(--spacing-xs);
+    }
+    
+    header nav {
+      width: 100%;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: var(--spacing-xs);
+    }
+    
+    header nav a {
+      padding: 0.5rem;
+      font-size: 0.9rem;
+    }
+  }
+  
+  .logo {
+    display: flex;
+    align-items: center;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--primary);
+    transition: var(--transition);
+  }
+  
+  .logo:hover {
+    transform: scale(1.02);
+  }
+  
+  .logo-icon {
+    margin-right: 0.5rem;
+    font-size: 2rem;
+  }
+  
+  header nav {
+    display: flex;
+    gap: var(--spacing-md);
+    align-items: center;
+  }
+  
+  header nav a {
+    color: var(--text-medium);
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+    position: relative;
+  }
+  
+  /* Regular navigation links */
+  header nav a:not(.nav-button):after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary);
+    transition: var(--transition);
+  }
+  
+  header nav a:not(.nav-button):hover {
+    color: var(--primary);
+  }
+  
+  header nav a:not(.nav-button):hover:after {
+    width: 100%;
+  }
+  
+  /* Button-style navigation link */
+  header nav .nav-button {
+    background-color: var(--primary);
+    color: var(--white);
+    padding: 0.6rem 1.2rem;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    transition: var(--transition);
+  }
+  
+  header nav .nav-button:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-3px);
+    box-shadow: var(--box-shadow);
+  }
+  
+  /* Responsive header adjustments */
+  @media (max-width: 768px) {
+    header nav {
+      gap: var(--spacing-sm);
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .header-container {
+      flex-direction: column;
+      gap: var(--spacing-sm);
+      padding: var(--spacing-sm);
+    }
+    
+    header nav {
+      width: 100%;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: var(--spacing-xs);
+    }
+    
+    header nav a {
+      padding: 0.5rem;
+      font-size: 0.9rem;
+    }
+  }
+
+/* Main content styles */
+main {
+    margin-top: var(--navbar-height); /* Add margin to keep content below navbar */
+    padding-top: var(--spacing-md);
+    flex: 1;
+}
+
+/* Return link positioning */
+a.return-link {
+    display: inline-block;
+    margin: calc(var(--navbar-height) + var(--spacing-md)) 0 var(--spacing-md) var(--spacing-md); /* Adjusted margin */
+    padding: 10px 15px;
+    background-color: var(--light-bg);
+    border-radius: var(--border-radius);
+    color: var(--primary);
+    border: 1px solid var(--border-light);
+    font-weight: 600;
+}
+
+a.return-link:hover {
+    background-color: var(--primary);
+    color: var(--white);
+    transform: translateY(-3px);
+    box-shadow: var(--box-shadow-sm);
+}
+
+/* Page title with proper spacing */
+h1 {
+    margin: var(--spacing-xl) 0 var(--spacing-lg);
+    font-size: 2rem;
+    color: var(--text-dark);
+    text-align: center;
+    position: relative;
+}
+
+h1:after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background-color: var(--secondary);
+    margin: 0.5rem auto 0;
+}
+
+h2 {
+    color: var(--primary);
+    margin-bottom: var(--spacing-sm);
+    font-size: 1.5rem;
 }
 
 /* Liens */
 a {
     display: inline-block;
-    background-color: #f18700;
-    padding: 10px 15px;
-    border-radius: 10px;
-    color: white;
+    color: var(--primary);
     text-decoration: none;
-    transition: background 0.3s ease-in-out;
+    font-weight: 600;
+    transition: var(--transition);
 }
 
-a:hover {
-    background-color: #d97706;
+a.return-link {
+    display: inline-block;
+    margin-bottom: var(--spacing-md);
+    padding: 10px 15px;
+    background-color: var(--light-bg);
+    border-radius: var(--border-radius);
+    color: var(--primary);
+    border: 1px solid var(--border-light);
+    font-weight: 600;
 }
 
-/* Messagerie */
+a.return-link:hover {
+    background-color: var(--primary);
+    color: var(--white);
+    transform: translateY(-3px);
+    box-shadow: var(--box-shadow-sm);
+}
+
+/* Container de messagerie - adjusted to account for navbar */
 #Messagerie {
-    text-align: center;
-    margin: auto;
-    margin-top: 100px;
-    margin-bottom: 100px;
-    height: 500px;
     width: 80%;
     max-width: 1000px;
-    
-    background-color: #fcf7f0;
-    border: 1px solid gray;
-    border-radius: 20px;
-
+    height: auto;
+    min-height: 500px;
+    max-height: 70vh;
+    margin: var(--spacing-lg) auto;
+    padding: var(--spacing-md);
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
     overflow-y: auto;
-    scrollbar-width: none;
-    scrollbar-color: #ccc transparent;
-
-    box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
 }
 
-/* Champ de saisie du chat */
+/* Style des messages */
+#Messagerie p {
+    width: fit-content;
+    max-width: 80%;
+    padding: var(--spacing-sm);
+    border-radius: var(--border-radius);
+    margin-bottom: var(--spacing-sm);
+    position: relative;
+    box-shadow: var(--box-shadow-sm);
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Messages lus */
+#Messagerie p.lu {
+    background-color: var(--light-bg);
+    border-left: 4px solid var(--secondary);
+    align-self: flex-start;
+    color: var(--text-medium);
+}
+
+/* Messages non lus */
+#Messagerie p.non-lu {
+    background-color: var(--primary-light);
+    border-left: 4px solid var(--primary);
+    font-weight: 600;
+    color: var(--text-dark);
+    align-self: flex-start;
+}
+
+/* Horodatage des messages */
+#Messagerie small {
+    display: block;
+    text-align: right;
+    font-size: 0.75rem;
+    color: var(--text-light);
+    margin-top: var(--spacing-xs);
+}
+
+/* Formulaire de chat */
 #ChatInput {
     display: flex;
-    justify-content: center;
+    flex-wrap: wrap;
     align-items: center;
-    gap: 10px;
+    gap: var(--spacing-sm);
+    background-color: var(--white);
+    border-radius: var(--border-radius-pill);
+    padding: var(--spacing-sm) var(--spacing-md);
+    margin: 0 auto var(--spacing-lg);
+    max-width: 1000px;
+    width: 80%;
+    box-shadow: var(--box-shadow);
+}
 
-    background-color: #f18700;
-    border-radius: 50px;
-    padding: 15px;
-    margin: 30px auto;
-    width: 60%;
-    max-width: 600px;
+#ChatInput label {
+    font-weight: 600;
+    color: var(--text-medium);
+    flex: 1 0 100%;
+}
+
+#ChatInput input[type="text"] {
+    flex: 1;
+    padding: 0.75rem var(--spacing-sm);
+    border: 1px solid var(--border-medium);
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+    width: auto;
+}
+
+#ChatInput input[type="text"]:focus {
+    border-color: var(--primary);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(241, 135, 0, 0.2);
 }
 
 /* Boutons */
 button {
-    background: #79c6c0;
-    color: white;
+    padding: 0.75rem var(--spacing-md);
+    background-color: var(--primary);
+    color: var(--white);
     border: none;
-    border-radius: 8px;
+    border-radius: var(--border-radius);
     cursor: pointer;
-    padding: 12px 18px;
-    font-size: 1rem;
-    
-    transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+    font-weight: 600;
+    transition: var(--transition);
 }
 
 button:hover {
-    background: #5aa29c;
-    transform: scale(1.05);
+    background-color: var(--primary-dark);
+    transform: translateY(-3px);
+    box-shadow: var(--box-shadow-sm);
 }
 
-/* Champ de texte */
-input[type="text"] {
-    height: 45px;
+/* Message Form - positioned properly */
+.message-form {
+    margin-top: var(--spacing-md);
+    margin-bottom: var(--spacing-lg); /* Add bottom margin for spacing */
+    padding: var(--spacing-md);
+    background-color: var(--light-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow-sm);
+    width: 80%;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.message-form h3 {
+    margin-bottom: var(--spacing-sm);
+    color: var(--primary);
+}
+
+.message-form textarea {
     width: 100%;
-    max-width: 500px;
-    padding: 10px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
+    min-height: 100px;
+    padding: var(--spacing-sm);
+    margin-bottom: var(--spacing-sm);
+    border: 1px solid var(--border-medium);
+    border-radius: var(--border-radius);
+    resize: vertical;
+    transition: var(--transition);
+}
+
+.message-form textarea:focus {
+    border-color: var(--primary);
     outline: none;
-    transition: border 0.2s ease-in-out;
+    box-shadow: 0 0 0 2px rgba(241, 135, 0, 0.2);
 }
 
-input[type="text"]:focus {
-    border-color: #f18700;
-    box-shadow: 0 0 5px rgba(241, 135, 0, 0.5);
+.message-form button {
+    display: block;
+    margin-left: auto;
 }
 
-/* Messages non lus */
-#Messagerie .non-lu {
-    background-color: #e4b474;
-    border: 2px solid #f18700;
-    font-weight: bold;
-    animation: clignoter 1s infinite alternate;
+/* Responsive design */
+@media (max-width: 768px) {
+    :root {
+        --navbar-height: 60px; /* Smaller navbar on mobile */
+    }
+    
+    header nav {
+        gap: var(--spacing-sm);
+    }
+    
+    #Messagerie, #ChatInput, .message-form {
+        width: 90%;
+    }
 }
 
-@keyframes clignoter {
-    from { opacity: 1; }
-    to { opacity: 0.9; }
+@media (max-width: 480px) {
+    :root {
+        --navbar-height: 100px; /* Account for stacked navbar on small screens */
+    }
+    
+    .header-container {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+        padding: var(--spacing-sm);
+    }
+    
+    header nav {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: var(--spacing-xs);
+    }
+    
+    h1 {
+        font-size: 1.8rem;
+        margin-top: calc(var(--navbar-height) + var(--spacing-md));
+    }
+    
+    a.return-link {
+        margin-top: calc(var(--navbar-height) + var(--spacing-sm));
+    }
+}
+
+/* Container for message lists */
+.message-list {
+    width: 80%;
+    max-width: 1000px;
+    margin: 0 auto var(--spacing-lg);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Message container styling */
+.message-container {
+    margin-bottom: var(--spacing-md);
+    max-width: 100%;
+}
+
+/* Mission title in message interface */
+.mission-title {
+    color: var(--text-dark);
+    font-size: 1.5rem;
+    margin-bottom: var(--spacing-sm);
+    border-bottom: 1px solid var(--border-light);
+    padding-bottom: var(--spacing-xs);
+}
+
+/* Add this wrapper for the message pages */
+.message-page-content {
+    padding-top: var(--navbar-height);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+/* Footer - All White Content */
+.footer {
+    background-color: var(--text-dark);
+    color: white;
+    padding: var(--spacing-lg) 0 var(--spacing-sm);
+    margin-top: auto;
+    width: 100%;
+}
+
+/* Make sure all text elements in footer are white */
+.footer *,
+.footer p,
+.footer a,
+.footer-link,
+.footer-title,
+.footer-center,
+.social-icon,
+.footer-bottom {
+    color: white;
+}
+
+/* Ensure links don't change color on hover */
+.footer a:hover,
+.footer-link:hover {
+    color: white;
+    opacity: 1;
+}
+
+/* Keep all other footer styles unchanged */
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--spacing-lg);
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+}
+  
+.footer-column {
+    flex: 1;
+    min-width: 200px;
+    margin-bottom: var(--spacing-md);
+}
+.footer-center, p{
+color: white;
+}
+.footer-title {
+    font-size: 1.2rem;
+    margin-bottom: var(--spacing-sm);
+    color: white;
+    font-weight: 600;
+    position: relative;
+    padding-bottom: var(--spacing-xs);
+}
+  
+.footer-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background-color: white;
+}
+  
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+  
+.footer-link {
+    margin-bottom: var(--spacing-xs);
+    opacity: 0.8;
+    transition: var(--transition);
+    display: block;
+    color: white;
+}
+  
+.footer-link:hover {
+    opacity: 1;
+    padding-left: 5px;
+    color: white;
+}
+  
+.social-links {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-sm);
+}
+  
+.social-icon {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    transition: var(--transition);
+    color: white;
+}
+  
+.social-icon:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+  
+.footer-bottom {
+    text-align: center;
+    padding-top: var(--spacing-md);
+    margin-top: var(--spacing-md);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    opacity: 0.7;
+    font-size: 0.9rem;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--spacing-md);
+    padding-right: var(--spacing-md);
+    color: white;
 }
