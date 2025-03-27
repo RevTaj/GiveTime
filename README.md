@@ -40,3 +40,7 @@ Sacha Revelle
 
 ## LE lien du github : 
 [Notre Github](https://github.com/RevTaj/GiveTime)
+
+
+# Petite précision
+Il est possible qu'il soit nécessaire de modifier le bdd.php en terme de login à la bdd, utilisant uWamp mon login est "root et mdp "root" ce qui n'est pas le cas pour XAMPP. 
