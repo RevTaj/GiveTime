@@ -65,7 +65,7 @@
 
                 <?php
                 if (isset($_POST['titre']) && !isset($_POST['id_Posts'])) {
-                    $sqlCheckQuery = "SELECT COUNT(*) FROM gt_Posts WHERE TitrePosts = :TitrePosts AND Association_id = :Association_id";
+                    $sqlCheckQuery = "SELECT COUNT(*) FROM gt_posts WHERE TitrePosts = :TitrePosts AND Association_id = :Association_id";
                     $checkStmt = $db->prepare($sqlCheckQuery);
                     $checkStmt->execute(array(
                         'TitrePosts' => $_POST['titre'],
@@ -76,7 +76,7 @@
                     if ($count > 0) {
                         echo "Un Posts avec ce titre existe déjà pour cet enseignant.";
                     } else {
-                        $sqlInsertQuery = "INSERT INTO gt_Posts(TitrePosts, Association_id, tag, description) VALUES (:TitrePosts, :Association_id, :tag, :description)";
+                        $sqlInsertQuery = "INSERT INTO gt_posts(TitrePosts, Association_id, tag, description) VALUES (:TitrePosts, :Association_id, :tag, :description)";
                         $insererPosts = $db->prepare($sqlInsertQuery);
                         $insererPosts->execute(array(
                             'TitrePosts' => $_POST['titre'],
@@ -97,7 +97,7 @@
                     // --------------------------------------------------
                                     //Zone d'update pour eviter de Refresh  
                         if (isset($_POST['update']) && !empty($_POST['id_Posts']) && !empty($_POST['titre']) && !empty($_POST['tag']) && !empty($_POST['description'])) {
-                            $sqlUpdateQuery = "UPDATE gt_Posts
+                            $sqlUpdateQuery = "UPDATE gt_posts
                                             SET TitrePosts = :TitrePosts, tag = :tag, description = :description
                                             WHERE id_Posts = :id_Posts AND Association_id = :Association_id";
 
@@ -116,7 +116,7 @@
                     // --------------------------------------------------
 
 
-                        $modif = $db->prepare("SELECT * FROM gt_Posts WHERE Association_id = :Association_id");
+                        $modif = $db->prepare("SELECT * FROM gt_posts WHERE Association_id = :Association_id");
                         $modif->execute(array(':Association_id' => $id_association));
                         $modifs = $modif->fetchAll();
                         foreach ($modifs as $modification) {
@@ -134,13 +134,13 @@
                 if (isset($_POST['supprimer'])) {
                     $id_Posts = $_POST['id_Posts'];
 
-                    $sqlDeleteInscriptionsQuery = "DELETE FROM gt_Inscription WHERE Posts_id = :id_Posts";
+                    $sqlDeleteInscriptionsQuery = "DELETE FROM gt_inscription WHERE Posts_id = :id_Posts";
                     $deleteInscriptions = $db->prepare($sqlDeleteInscriptionsQuery);
                     $deleteInscriptions->execute(array(
                         ':id_Posts' => $id_Posts
                     ));
 
-                    $sqlDeletePostsQuery = "DELETE FROM gt_Posts WHERE id_Posts = :id_Posts AND Association_id = :Association_id";
+                    $sqlDeletePostsQuery = "DELETE FROM gt_posts WHERE id_Posts = :id_Posts AND Association_id = :Association_id";
                     $deletePosts = $db->prepare($sqlDeletePostsQuery);
                     $deletePosts->execute(array(
                         ':id_Posts' => $id_Posts,
@@ -155,7 +155,7 @@
             <div class="right-section">
                 <h2>Vos missions créer :</h2>
                 <?php
-                $Postsuivie = $db->prepare("SELECT * FROM gt_Posts WHERE Association_id = :id_Prof ORDER BY tag");
+                $Postsuivie = $db->prepare("SELECT * FROM gt_posts WHERE Association_id = :id_Prof ORDER BY tag");
                 $Postsuivie->execute(array(':id_Prof' => $id_association));
                 $Posts = $Postsuivie->fetchAll();
                 foreach ($Posts as $lesPostssuivies) {
@@ -170,7 +170,7 @@
                 <form method="post" action="" id="modif">
                     <select name="id_Posts" form="modif">
                         <?php
-                        $modif = $db->prepare("SELECT * FROM gt_Posts WHERE Association_id = :Association_id");
+                        $modif = $db->prepare("SELECT * FROM gt_posts WHERE Association_id = :Association_id");
                         $modif->execute(array(':Association_id' => $id_association));
                         $modifs = $modif->fetchAll();
                         foreach ($modifs as $modification) {
@@ -187,7 +187,7 @@
                 if (isset($_POST['modifier'])) {
                     $Posts_id = $_POST['id_Posts'];
 
-                    $query = $db->prepare("SELECT * FROM gt_Posts WHERE id_Posts = :id_Posts AND Association_id = :Association_id");
+                    $query = $db->prepare("SELECT * FROM gt_posts WHERE id_Posts = :id_Posts AND Association_id = :Association_id");
                     $query->execute(array(
                         ':id_Posts' => $Posts_id,
                         ':Association_id' => $id_association
