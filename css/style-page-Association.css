@@ -60,14 +60,22 @@ header {
 }
 
 /* Header Container */
-.header-container {
+.logo img {
+    height: 50px; /* Ajustez cette valeur selon la taille souhaitée */
+    margin-right: var(--spacing-md); /* Espace entre le logo et la navigation */
+    vertical-align: middle;
+  }
+  
+  /* Modification de la classe header-container pour assurer un bon alignement */
+  .header-container {
+    /* Propriétés existantes conservées */
     display: flex;
     justify-content: space-between;
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 var(--spacing-md);
-}
+    padding: var(--spacing-xs) var(--spacing-md); /* Padding ajusté */
+  }
 
 header nav {
     display: flex;

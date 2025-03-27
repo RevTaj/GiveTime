@@ -50,35 +50,109 @@ try {
 <?php include("../include/header.php"); ?>
 
 <main class="profile-container">
-    <div class="profile-card">
+    <!-- Profile Summary Section -->
+    <section class="profile-hero">
         <div class="profile-header">
             <img src="<?= $profileImage ?>" alt="Photo de profil" class="profile-img">
             <div class="profile-info">
-                <h1><?= $nom ?></h1>
-                <h2><?= $prenom ?></h2>
-                <p class="email"><?= $email ?></p>
-                <p class="status">Administrateur système</p>
+                <h1><?= $nom ?> <?= $prenom ?></h1>
+                <p class="email"><i class="fas fa-envelope"></i> <?= $email ?></p>
+                <div class="profile-badges">
+                    <div class="profile-level-badge" style="background-color: rgba(85, 0, 128, 0.15); color: #550080;">
+                        <i class="fas fa-shield-alt" style="color: #550080;"></i> Administrateur
+                    </div>
+                    <div class="profile-location-badge">
+                        <i class="fas fa-map-marker-alt"></i> <?= $localisation ?>
+                    </div>
+                </div>
+            </div>
+            <!-- Quick Action Buttons -->
+            <div class="profile-quick-actions">
+                <a href="edit-admin-profile.php" class="btn-quick-edit"><i class="fas fa-edit"></i> Modifier</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Grid layout -->
+    <div class="profile-grid">
+        <!-- Main Content Column -->
+        <div class="main-content">
+            <!-- About Me Card -->
+            <div class="profile-card">
+                <div class="card-header">
+                    <i class="fas fa-user-circle"></i>
+                    <h3>Présentation</h3>
+                </div>
+                <div class="card-content">
+                    <p><?= $description ?></p>
+                    
+                    <!-- Admin Stats Section -->
+                    <div class="progress-section">
+                        <h4 style="margin: 20px 0 5px; font-size: 16px;">
+                            <i class="fas fa-chart-line" style="color: var(--primary); margin-right: 5px;"></i> 
+                            Statistiques d'administration
+                        </h4>
+                        
+                        <div class="progress-stats">
+                            <div class="stat-item">
+                                <i class="fas fa-users-cog" style="background-color: rgba(85, 0, 128, 0.1);"></i>
+                                <div class="stat-info">
+                                    <span class="stat-value">25000</span>
+                                    <span class="stat-label">Utilisateurs gérés</span>
+                                </div>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-calendar-check" style="background-color: rgba(85, 0, 128, 0.1);"></i>
+                                <div class="stat-info">
+                                    <span class="stat-value"><?= isset($admin['last_login']) ? date('d/m/Y', strtotime($admin['last_login'])) : date('d/m/Y') ?></span>
+                                    <span class="stat-label">Dernière connexion</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         
-        <div class="profile-tags">
-            <?php foreach ($tags as $tag): ?>
-                <span class="tag"><?= htmlspecialchars($tag) ?></span>
-            <?php endforeach; ?>
+        <!-- Side Content Column -->
+        <div class="side-container">
+            <!-- Roles/Permissions Card -->
+            <div class="profile-card">
+                <div class="card-header">
+                    <i class="fas fa-tags"></i>
+                    <h3>Rôles & Permissions</h3>
+                </div>
+                <div class="card-content">
+                    <div class="profile-tags">
+                        <?php if (!empty($tags)): ?>
+                            <?php foreach ($tags as $tag): ?>
+                                <span class="tag"><i class="fas fa-check-circle"></i> <?= htmlspecialchars($tag) ?></span>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <p>Aucun rôle spécifié</p>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Location Card -->
+            <div class="profile-card">
+                <div class="card-header">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Localisation</h3>
+                </div>
+                <div class="card-content">
+                    <div id="map" class="profile-map"></div>
+                </div>
+            </div>
         </div>
-        
-        <div class="profile-description">
-            <h3>Présentation</h3>
-            <p><?= $description ?></p>
-        </div>
-        
-        <div class="profile-location">
-            <h3>Localisation</h3>
-            <p><?= $localisation ?></p>
-            <div id="map"></div>
-        </div>
-        
-        </div>
+    </div>
+    
+    <!-- Action Buttons -->
+    <div class="profile-actions">
+        <a href="pageAdmin.php" class="btn btn-primary"><i class="fas fa-tachometer-alt"></i> Tableau de bord</a>
+        <a href="pageAdmin.php" class="btn btn-secondary"><i class="fas fa-users"></i> Gestion des utilisateurs</a>
+        <a href="edit-admin-profile.php" class="btn btn-secondary"><i class="fas fa-cog"></i> Paramètres du profil</a>
     </div>
 </main>
 

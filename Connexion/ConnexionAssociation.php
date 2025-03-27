@@ -7,55 +7,53 @@
 </head>
 <body>
 <?php 
-error_reporting(E_ALL);
-ini_set("display_errors", 1);
-echo '<hr> <h2> Connexion à bdd réussi </h2>';
-echo("Bonjour ");
+// Remove debugging output in production
+// error_reporting(E_ALL);
+// ini_set("display_errors", 1);
+// echo '<hr> <h2> Connexion à bdd réussi </h2>';
+// echo("Bonjour ");
 
 include("../bdd.php");
 
-$login = strip_tags($_POST['login']);
-$mdp = strip_tags($_POST['mdp']);
+// Sanitize inputs
+$login = isset($_POST['login']) ? strip_tags($_POST['login']) : '';
+$mdp = isset($_POST['mdp']) ? strip_tags($_POST['mdp']) : '';
 
-
-/*
-if (!empty($login) && !empty($mdp)) {
-    $User = $db->prepare("SELECT * FROM SAE203_Enseignant WHERE loginEnseignant=? AND mdpEnseignant=?");
-    $User->execute([$login, sha1($mdp)]);
-    $test = $User->fetch();
-
-    if ($test) {
-        session_start();
-        $_SESSION['login'] = $login;
-        $_SESSION['authentification'] = true;
-        $_SESSION['ID'] = 3;
-        $_SESSION['date'] = date("Y-m-d");
-        header('location: pageProf.php');
-    }else {
-        header('location: index2.php?msg="Erreur de login / Erreur de mot de passe"');
-    }
-}
-*/
-
-
-if (isset($login) && isset($mdp)) {
-    $User = $db->prepare("SELECT * FROM gt_association WHERE loginAssociation=? AND mdpAssociation=?");
-    $User->execute([$login, sha1($mdp)]);
-    $test = $User->fetch();
-
-    if ($test) {
-        session_start();
-        $_SESSION['login'] = $login;
-        $_SESSION['authentification'] = true;
-        $_SESSION['Identifiant'] = $test['id_Association'];
-        $_SESSION['Permission'] = 3;
-        $_SESSION['date'] = date("Y-m-d");
-        header('location: ../Page/page1-Asso.php'); // On renvoie sur la page par défaut des asso
-    }else {
-        header('location: ../index/indexAssociation.php?msg="Erreur de login / Erreur de mot de passe"');
-    }
+// Check if inputs are not empty
+if (empty($login) || empty($mdp)) {
+    header('location: ../index/indexAssociation.php?msg="Veuillez remplir tous les champs"');
+    exit;
 }
 
+// Query the association table specifically
+$User = $db->prepare("SELECT * FROM gt_association WHERE loginAssociation = ?");
+$User->execute([$login]);
+$association = $User->fetch();
+
+// Check if association exists and password matches
+if ($association && $association['mdpAssociation'] === sha1($mdp)) {
+    // Start session and set association-specific variables
+    session_start();
+    
+    // Clear any existing session data to prevent confusion
+    session_unset();
+    
+    // Set association-specific session variables
+    $_SESSION['login'] = $login;
+    $_SESSION['authentification'] = true;
+    $_SESSION['Identifiant'] = $association['id_Association'];
+    $_SESSION['Permission'] = 3; // Association permission level
+    $_SESSION['userType'] = 'association'; // Explicitly set user type
+    $_SESSION['date'] = date("Y-m-d");
+    
+    // Redirect to association dashboard
+    header('location: ../Page/page1-Asso.php');
+    exit;
+} else {
+    // Invalid credentials
+    header('location: ../index/indexAssociation.php?msg="Identifiants incorrects. Veuillez vérifier votre nom d\'utilisateur et mot de passe."');
+    exit;
+}
 ?>
 </body>
 </html>

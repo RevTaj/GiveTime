@@ -7,34 +7,65 @@ if (!isset($_SESSION['Identifiant'])) {
     die("Vous devez être connecté pour accéder à cette page.");
 }
 
-$id_benevole = $_SESSION['Identifiant'];
+// Détermine si l'utilisateur est un bénévole ou une association
+$userType = isset($_SESSION['userType']) ? $_SESSION['userType'] : 
+           (isset($_SESSION['Permission']) && $_SESSION['Permission'] == 3 ? 'association' : 'benevole');
+
+$userId = $_SESSION['Identifiant'];
 
 try {
-    // Récupération des informations du bénévole connecté
-    $stmt = $db->prepare("SELECT * FROM gt_benevole WHERE id_benevole = :id");
-    $stmt->execute(['id' => $id_benevole]);
-    $benevole = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    if (!$benevole) {
-        die("Profil introuvable.");
+    if ($userType == 'association') {
+        // Récupération des informations de l'association
+        $stmt = $db->prepare("SELECT * FROM gt_association WHERE id_Association = :id");
+        $stmt->execute(['id' => $userId]);
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+        if (!$user) {
+            die("Profil d'association introuvable.");
+        }
+        
+        // Affectation des valeurs pour une association
+        $nom = htmlspecialchars($user['nomAssociation']);
+        $prenom = ""; // Les associations n'ont pas de prénom
+        $email = htmlspecialchars($user['mailAssociation']);
+        $tags = array_filter(array_map('trim', explode(',', $user['tag'])));
+        $description = nl2br(htmlspecialchars($user['description']));
+        $localisation = htmlspecialchars($user['localisation']);
+        $profileImage = !empty($user['image']) ? '../images/profils/' . htmlspecialchars($user['image']) : 'https://upload.wikimedia.org/wikipedia/commons/a/ac/Default_pfp.jpg';
+        
+        // Les associations n'ont pas de points/niveaux
+        $showLevel = false;
+    } else {
+        // Récupération des informations du bénévole
+        $stmt = $db->prepare("SELECT * FROM gt_benevole WHERE id_benevole = :id");
+        $stmt->execute(['id' => $userId]);
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+        if (!$user) {
+            die("Profil de bénévole introuvable.");
+        }
+        
+        // Affectation des valeurs pour un bénévole
+        $prenom = htmlspecialchars($user['prenomBenevole']);
+        $nom = htmlspecialchars($user['nomBenevole']);
+        $email = htmlspecialchars($user['mailBenevole']);
+        $tags = array_filter(array_map('trim', explode(',', $user['tag'])));
+        $description = nl2br(htmlspecialchars($user['description']));
+        $localisation = htmlspecialchars($user['localisation']);
+        $profileImage = !empty($user['image']) ? '../images/profils/' . htmlspecialchars($user['image']) : 'https://upload.wikimedia.org/wikipedia/commons/a/ac/Default_pfp.jpg';
+        
+        // Points et niveaux pour les bénévoles
+        $points = (int)$user['point'];
+        $pointsForNextLevel = 100;
+        $progress = $points % $pointsForNextLevel;
+        $level = floor($points / $pointsForNextLevel) + 1;
+        $percentage = ($progress / $pointsForNextLevel) * 100;
+        $showLevel = true;
     }
-
-    // Affectation des valeurs récupérées
-    $prenom = htmlspecialchars($benevole['prenomBenevole']);
-    $nom = htmlspecialchars($benevole['nomBenevole']);
-    $email = htmlspecialchars($benevole['mailBenevole']);
-    $tags = array_filter(array_map('trim', explode(',', $benevole['tag'])));
-    $description = nl2br(htmlspecialchars($benevole['description']));
-    $localisation = htmlspecialchars($benevole['localisation']);
-    $profileImage = !empty($benevole['image']) ? '../images/profils/' . htmlspecialchars($benevole['image']) : 'https://upload.wikimedia.org/wikipedia/commons/a/ac/Default_pfp.jpg';
-
-    // Récupération et traitement des points de l'utilisateur
-    $points = (int)$benevole['point']; // Conversion en entier pour s'assurer du type
-    $pointsForNextLevel = 100;
-    $progress = $points % $pointsForNextLevel; // Points dans le niveau actuel
-    $level = floor($points / $pointsForNextLevel) + 1; // Calcul du niveau actuel
-    $percentage = ($progress / $pointsForNextLevel) * 100; // Pourcentage pour la barre
-
+    
+    // Pour la compatibilité, on garde une référence à $benevole si c'est un bénévole
+    $benevole = $userType == 'benevole' ? $user : null;
+    
 } catch (PDOException $e) {
     die("Erreur lors de la récupération des informations : " . $e->getMessage());
 }
@@ -50,8 +81,7 @@ try {
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-    <title>Profil de <?= $nom ?></title>
-
+    <title>Profil <?= $userType == 'association' ? 'de ' . $nom : 'de ' . $nom . ' ' . $prenom ?></title>
 </head>
 <body>
 
@@ -66,9 +96,11 @@ try {
                 <h1><?= $nom ?> <?= $prenom ?></h1>
                 <p class="email"><i class="fas fa-envelope"></i> <?= $email ?></p>
                 <div class="profile-badges">
+                    <?php if ($showLevel): ?>
                     <div class="profile-level-badge">
                         <i class="fas fa-award"></i> Niveau <?= $level ?>
                     </div>
+                    <?php endif; ?>
                     <div class="profile-location-badge">
                         <i class="fas fa-map-marker-alt"></i> <?= $localisation ?>
                     </div>
@@ -94,6 +126,7 @@ try {
                 <div class="card-content">
                     <p><?= $description ?></p>
                     
+                    <?php if ($showLevel): ?>
                     <!-- Progress bar below the description -->
                     <div class="progress-section">
                         <h4 style="margin: 20px 0 5px; font-size: 16px;">
@@ -133,6 +166,7 @@ try {
                             Terminez des missions pour gagner des points et débloquer le prochain niveau!
                         </p>
                     </div>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
@@ -143,13 +177,17 @@ try {
             <div class="profile-card">
                 <div class="card-header">
                     <i class="fas fa-tags"></i>
-                    <h3>Compétences & Intérêts</h3>
+                    <h3><?= $userType == 'association' ? 'Domaines d\'action' : 'Compétences & Intérêts' ?></h3>
                 </div>
                 <div class="card-content">
                     <div class="profile-tags">
-                        <?php foreach ($tags as $tag): ?>
-                            <span class="tag"><i class="fas fa-check-circle"></i> <?= htmlspecialchars($tag) ?></span>
-                        <?php endforeach; ?>
+                        <?php if (!empty($tags)): ?>
+                            <?php foreach ($tags as $tag): ?>
+                                <span class="tag"><i class="fas fa-check-circle"></i> <?= htmlspecialchars($tag) ?></span>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <p>Aucun élément spécifié</p>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
@@ -169,16 +207,11 @@ try {
     
 <!-- Action Buttons -->
 <div class="profile-actions">
-    <?php
-    
-    if (isset($benevole) && $benevole) {
-        // C'est un bénévole
-        echo '<a href="page1.php" class="btn btn-primary"><i class="fas fa-tasks"></i> Mes missions</a>';
-    } else {
-        // C'est une association
-        echo '<a href="page1-Asso.php" class="btn btn-primary"><i class="fas fa-tasks"></i> Mes missions</a>';
-    }
-    ?>
+    <?php if ($userType == 'association'): ?>
+        <a href="page1-Asso.php" class="btn btn-primary"><i class="fas fa-tasks"></i> Mes missions</a>
+    <?php else: ?>
+        <a href="page1.php" class="btn btn-primary"><i class="fas fa-tasks"></i> Mes missions</a>
+    <?php endif; ?>
     <a href="edit-profile.php" class="btn btn-secondary"><i class="fas fa-cog"></i> Paramètres du profil</a>
 </div>
 </main>
