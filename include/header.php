@@ -48,43 +48,43 @@ if(isset($_SESSION['authentification']) && $_SESSION['authentification'] === tru
                 
             <?php elseif($_SESSION['Permission'] == 2): ?>
                 <!-- Logged in as Bénévole -->
-                <a href="<?= $basePath ?>Page/page1.php" class="<?= basename($_SERVER['PHP_SELF']) == 'page1.php' ? 'active' : '' ?>">
+                <a href="<?= $basePath ?>../Page/page1.php" class="<?= basename($_SERVER['PHP_SELF']) == 'page1.php' ? 'active' : '' ?>">
                     Accueil
                 </a>
-                <a href="<?= $basePath ?>Page/profil-user.php" class="<?= basename($_SERVER['PHP_SELF']) == 'profil-user.php' ? 'active' : '' ?>">
+                <a href="<?= $basePath ?>../Page/profil-user.php" class="<?= basename($_SERVER['PHP_SELF']) == 'profil-user.php' ? 'active' : '' ?>">
                     <i class="fas fa-user"></i> Mon Profil
                 </a>
-                <a href="<?= $basePath ?>Connexion/deconnexion.php" class="nav-button">
+                <a href="<?= $basePath ?>../Connexion/deconnexion.php" class="nav-button">
                     <i class="fas fa-sign-out-alt"></i> Déconnexion
                 </a>
                 
             <?php elseif($_SESSION['Permission'] == 3): ?>
                 <!-- Logged in as Association -->
-                <a href="<?= $basePath ?>Page/page1-Asso.php" class="<?= basename($_SERVER['PHP_SELF']) == 'page1-Asso.php' ? 'active' : '' ?>">
+                <a href="<?= $basePath ?>../Page/page1-Asso.php" class="<?= basename($_SERVER['PHP_SELF']) == 'page1-Asso.php' ? 'active' : '' ?>">
                     Accueil
                 </a>
-                <a href="<?= $basePath ?>Page/profil-user.php" class="<?= basename($_SERVER['PHP_SELF']) == 'profil-user.php' ? 'active' : '' ?>">
+                <a href="<?= $basePath ?>../Page/profil-user.php" class="<?= basename($_SERVER['PHP_SELF']) == 'profil-user.php' ? 'active' : '' ?>">
                     <i class="fas fa-user"></i> Mon Profil
                 </a>
-                <a href="<?= $basePath ?>Page/pageAssociation.php" class="<?= basename($_SERVER['PHP_SELF']) == 'pageAssociation.php' ? 'active' : '' ?>">
+                <a href="<?= $basePath ?>../Page/pageAssociation.php" class="<?= basename($_SERVER['PHP_SELF']) == 'pageAssociation.php' ? 'active' : '' ?>">
                     <i class="fas fa-tasks"></i> Gérer les missions
                 </a>
-                <a href="<?= $basePath ?>Connexion/deconnexion.php" class="nav-button">
+                <a href="<?= $basePath ?>../Connexion/deconnexion.php" class="nav-button">
                     <i class="fas fa-sign-out-alt"></i> Déconnexion
                 </a>
                 
             <?php elseif($_SESSION['Permission'] == 4): ?>
                 <!-- Logged in as Admin -->
-                <a href="<?= $basePath ?>Page/pageAdmin.php" class="<?= basename($_SERVER['PHP_SELF']) == 'pageAdmin.php' ? 'active' : '' ?>">
+                <a href="<?= $basePath ?>../Page/pageAdmin.php" class="<?= basename($_SERVER['PHP_SELF']) == 'pageAdmin.php' ? 'active' : '' ?>">
                     <i class="fas fa-tachometer-alt"></i> Dashboard
                 </a>
-                <a href="<?= $basePath ?>Page/page1-Asso.php" class="<?= basename($_SERVER['PHP_SELF']) == 'page1-Asso.php' ? 'active' : '' ?>">
+                <a href="<?= $basePath ?>../Page/page1-Asso.php" class="<?= basename($_SERVER['PHP_SELF']) == 'page1-Asso.php' ? 'active' : '' ?>">
                     Vue Association
                 </a>
-                <a href="<?= $basePath ?>Page/page1.php" class="<?= basename($_SERVER['PHP_SELF']) == 'page1.php' ? 'active' : '' ?>">
+                <a href="<?= $basePath ?>../Page/page1.php" class="<?= basename($_SERVER['PHP_SELF']) == 'page1.php' ? 'active' : '' ?>">
                     Vue Bénévole
                 </a>
-                <a href="<?= $basePath ?>Page/profil-admin.php" class="<?= basename($_SERVER['PHP_SELF']) == 'profil-admin.php' ? 'active' : '' ?>">
+                <a href="<?= $basePath ?>../Page/profil-admin.php" class="<?= basename($_SERVER['PHP_SELF']) == 'profil-admin.php' ? 'active' : '' ?>">
                     <i class="fas fa-user-shield"></i> Profil Admin
                 </a>
                 <a href="<?= $basePath ?>Connexion/deconnexion.php" class="nav-button">

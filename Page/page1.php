@@ -143,9 +143,9 @@ include("Accueil.php");
                 <?php
                 // Récupération des missions disponibles
                 $missionsQuery = $db->prepare("
-                    SELECT * FROM gt_Posts 
-                    JOIN gt_association ON gt_Posts.association_id = gt_association.id_association
-                    ORDER BY gt_Posts.id_Posts DESC
+                    SELECT * FROM gt_posts 
+                    JOIN gt_association ON gt_posts.association_id = gt_association.id_association
+                    ORDER BY gt_posts.id_posts DESC
                 ");
                 $missionsQuery->execute();
                 $missions = $missionsQuery->fetchAll();

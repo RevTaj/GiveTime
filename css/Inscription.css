@@ -365,6 +365,71 @@ header {
     font-style: italic;
 }
 
+/* Style personnalisé pour les tag-checkbox en forme de ronds */
+.tag-checkbox {
+    position: relative;
+    padding-left: 40px; /* Espace pour le rond */
+}
+
+.tag-checkbox input[type="checkbox"] {
+    position: absolute;
+    opacity: 0; /* Cache la checkbox d'origine */
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Création du cercle personnalisé */
+.tag-checkbox::before {
+    content: '';
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--border-light);
+    border-radius: 50%; /* Forme ronde */
+    background-color: white;
+    transition: var(--transition);
+}
+
+/* Style du point intérieur quand sélectionné */
+.tag-checkbox.selected::after {
+    content: '';
+    position: absolute;
+    left: 19px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--primary);
+    transition: var(--transition);
+}
+
+/* Style du cercle extérieur quand sélectionné */
+.tag-checkbox.selected::before {
+    border-color: var(--primary);
+}
+
+/* Style hover */
+.tag-checkbox:hover::before {
+    border-color: var(--primary-dark);
+    background-color: var(--light-bg);
+}
+
+/* Ajustement du texte */
+.tag-checkbox span {
+    margin-left: 5px;
+}
+
+/* Style du tag sélectionné */
+.tag-checkbox.selected {
+    background-color: rgba(241, 135, 0, 0.1);
+    border-color: var(--primary);
+}
+
 /* Preview Container */
 .preview-container {
     flex: 1;

@@ -106,14 +106,69 @@ header {
     z-index: 100;
 }
 
-.header-container {
+/* Ajout aux styles de logo et navigation */
+
+/* Logo - Ajout pour l'image */
+.logo img {
+    height: 50px; /* Ajustez cette valeur selon la taille souhaitée */
+    margin-right: var(--spacing-md); /* Espace entre le logo et la navigation */
+    vertical-align: middle;
+  }
+  
+  /* Modification de la classe header-container pour assurer un bon alignement */
+  .header-container {
+    /* Propriétés existantes conservées */
     display: flex;
     justify-content: space-between;
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 var(--spacing-md);
-}
+    padding: var(--spacing-xs) var(--spacing-md); /* Padding ajusté */
+  }
+  
+  /* Assurez-vous que la navigation reste flexible */
+  .nav-menu {
+    display: flex;
+    gap: var(--spacing-md);
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  /* Ajustement responsif pour mobile - Complète les media queries existantes */
+  @media (max-width: 768px) {
+    header nav {
+      gap: var(--spacing-sm);
+    }
+    
+    .logo img {
+      height: 40px; /* Logo légèrement plus petit sur mobile */
+      margin-right: var(--spacing-sm);
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .header-container {
+      flex-direction: column;
+      gap: var(--spacing-sm);
+      padding: var(--spacing-sm) 0;
+    }
+    
+    .logo {
+      margin-bottom: var(--spacing-xs);
+    }
+    
+    header nav {
+      width: 100%;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: var(--spacing-xs);
+    }
+    
+    header nav a {
+      padding: 0.5rem;
+      font-size: 0.9rem;
+    }
+  }
 
 header nav {
     display: flex;
